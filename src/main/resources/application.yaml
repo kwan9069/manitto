@@ -11,5 +11,10 @@ spring:
   h2:
     console:
       enabled: true
+  sql:
+    init:
+      schema-locations: classpath:h2/schema.sql
+#      data-locations: classpath:h2/data.sql
+
 mybatis:
   mapper-locations: mapper/*.xml
