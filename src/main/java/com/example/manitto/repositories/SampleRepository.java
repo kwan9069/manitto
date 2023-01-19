@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-public class SampleRepository {
+public interface SampleRepository {
+
 }

@@ -1,0 +1,19 @@
+package com.example.manitto.api.call;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
+import java.util.Map;
+
+/**
+ * Created by jonghyeon on 2023/01/20,
+ * Package : com.example.manitto.services
+ */
+
+public interface NicknameApiService {
+
+    String baseUrl = "https://nickname.hwanmoo.kr";
+    @GET("/")
+    Call<Map> call(@Query("format") String format, @Query("count") int count);
+}
