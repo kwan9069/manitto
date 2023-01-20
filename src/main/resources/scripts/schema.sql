@@ -2,8 +2,8 @@ drop table if exists mission;
 drop table if exists penalty;
 drop table if exists reward;
 drop table if exists comment;
-drop table if exists user_matching;
-drop table if exists matching;
+drop table if exists user_match;
+drop table if exists `match`;
 drop table if exists user;
 
 create table user
@@ -19,7 +19,7 @@ create table user
     prev_receiver    boolean default false not null,
     is_admin         boolean default false not null
 );
-create table matching
+create table `match`
 (
     id        int(10) primary key auto_increment,
     match_ymd date    default now() not null,
@@ -28,14 +28,14 @@ create table matching
     result    boolean default null
 );
 
-create table user_matching
+create table user_match
 (
     user_id        int(10)               not null,
     is_contributor boolean default false not null,
     is_receiver    boolean default false not null,
     match_id       int(10)               not null,
     constraint foreign key (user_id) references user (id),
-    constraint foreign key (match_id) references matching (id)
+    constraint foreign key (match_id) references `match` (id)
 );
 
 create table mission
@@ -44,7 +44,7 @@ create table mission
     task           text              not null,
     recommendation int(10) default 0 not null,
     match_id       int(10)           not null,
-    constraint foreign key (match_id) references matching (id)
+    constraint foreign key (match_id) references `match` (id)
 );
 
 create table reward
@@ -53,7 +53,7 @@ create table reward
     task           text              not null,
     recommendation int(10) default 0 not null,
     match_id       int(10)           not null,
-    constraint foreign key (match_id) references matching (id)
+    constraint foreign key (match_id) references `match` (id)
 );
 
 create table penalty
@@ -62,7 +62,7 @@ create table penalty
     task           text              not null,
     recommendation int(10) default 0 not null,
     match_id       int(10)           not null,
-    constraint foreign key (match_id) references matching (id)
+    constraint foreign key (match_id) references `match` (id)
 );
 
 create table comment
@@ -72,6 +72,6 @@ create table comment
     content  text                   not null,
     write_at datetime default now() not null,
     match_id int(10)                not null,
-    constraint foreign key (match_id) references matching (id)
+    constraint foreign key (match_id) references `match` (id)
 );
 show tables;
