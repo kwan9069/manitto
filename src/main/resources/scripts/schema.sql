@@ -75,3 +75,5 @@ create table comment
     constraint foreign key (match_id) references `match` (id)
 );
 show tables;
+
+
