@@ -8,6 +8,7 @@ import lombok.*;
  */
 
 @Getter
+@Setter
 @RequiredArgsConstructor
 public class User {
     private final Long id;
@@ -32,7 +33,7 @@ public class User {
 
     @Getter
     @RequiredArgsConstructor
-    public static final class AuthenticationDto {
+    public static final class AuthDto {
         private final String username;
         private final String password;
     }
@@ -48,7 +49,6 @@ public class User {
 
     @Getter
     @Setter
-    @ToString
     @AllArgsConstructor
     public class UpdateDto {
         private String password;

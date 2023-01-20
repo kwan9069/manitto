@@ -14,7 +14,7 @@ spring:
       data-locations: classpath:scripts/data.sql
 mybatis:
   check-config-location: true
-  config-location: classpath:mybatis/alias-config.xml
+#  config-location: classpath:mybatis/alias-config.xml
   mapper-locations: classpath:mybatis/mappers/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
