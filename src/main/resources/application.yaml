@@ -13,8 +13,10 @@ spring:
       schema-locations: classpath:scripts/schema.sql
       data-locations: classpath:scripts/data.sql
 mybatis:
-#  config-location: classpath:mybatis/mybatis-config.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+#  type-aliases-package: com.example.manitto.dtos
+  config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mappers/**/*.xml
-  type-aliases-package: com.example.manitto.dtos
-  configuration:
-    map-underscore-to-camel-case: true
+
+

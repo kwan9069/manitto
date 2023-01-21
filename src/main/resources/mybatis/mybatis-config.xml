@@ -6,6 +6,11 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
-
+        <!--User-->
+        <typeAlias alias="userDto" type="com.example.manitto.dtos.User"/>
+        <typeAlias alias="userAuthDto" type="com.example.manitto.dtos.User$AuthDto"/>
+        <typeAlias alias="userRegisterDto" type="com.example.manitto.dtos.User$RegisterDto"/>
+        <typeAlias alias="userUpdateDto" type="com.example.manitto.dtos.User$UpdateDto"/>
+        <typeAlias alias="userInfoDto" type="com.example.manitto.dtos.User$InfoDto"/>
     </typeAliases>
 </configuration>
