@@ -41,6 +41,7 @@ public class Comment {
         if (to.getEdited() != null) from.setEdited(to.getEdited());
         return from;
     }
+
     public UpdateDto generateUpdateDto() {
         return UpdateDto.builder().build();
     }
@@ -61,9 +62,9 @@ public class Comment {
     @AllArgsConstructor
     public static class UpdateDto {
         @Builder.Default
-        private  String content = instance.content;
+        private String content = instance.content;
         @Builder.Default
-        private  Boolean edited = instance.edited;
+        private Boolean edited = instance.edited;
     }
 
     @Getter

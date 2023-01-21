@@ -29,7 +29,7 @@ public class Match {
     }
 
     public InfoDto toInfoDto() {
-        return new InfoDto(id,title,matchYmd,result,archived,round);
+        return new InfoDto(id, title, matchYmd, result, archived, round);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
@@ -38,6 +38,7 @@ public class Match {
         if (to.getArchived() != null) from.setArchived(to.getArchived());
         return from;
     }
+
     public UpdateDto generateUpdateDto() {
         return UpdateDto.builder().build();
     }
@@ -57,9 +58,9 @@ public class Match {
     @AllArgsConstructor
     public static class UpdateDto {
         @Builder.Default
-        private  Boolean result = instance.result;
+        private Boolean result = instance.result;
         @Builder.Default
-        private  Boolean archived = instance.archived;
+        private Boolean archived = instance.archived;
     }
 
     @Getter

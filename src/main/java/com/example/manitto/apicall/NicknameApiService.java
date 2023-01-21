@@ -14,6 +14,7 @@ import java.util.Map;
 public interface NicknameApiService {
 
     String baseUrl = "https://nickname.hwanmoo.kr";
+
     @GET("/")
     Call<Map> call(@Query("format") String format, @Query("count") int count);
 }

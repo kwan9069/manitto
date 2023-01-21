@@ -35,6 +35,7 @@ public class UserMatch {
         if (to.getIsReceiver() != null) from.setIsReceiver(to.getIsReceiver());
         return from;
     }
+
     public UpdateDto generateUpdateDto() {
         return UpdateDto.builder().build();
     }
@@ -55,9 +56,9 @@ public class UserMatch {
     @AllArgsConstructor
     public static class UpdateDto {
         @Builder.Default
-        private  Boolean isDonator = instance.isDonator;
+        private Boolean isDonator = instance.isDonator;
         @Builder.Default
-        private  Boolean isReceiver = instance.isReceiver;
+        private Boolean isReceiver = instance.isReceiver;
     }
 
     @Getter

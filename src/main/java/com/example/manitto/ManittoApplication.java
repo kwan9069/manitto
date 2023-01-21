@@ -17,7 +17,7 @@ public class ManittoApplication {
     }
 
     @Bean
-    public Retrofit.Builder apiClient(){
+    public Retrofit.Builder apiClient() {
         return new Retrofit.Builder();
     }
 
