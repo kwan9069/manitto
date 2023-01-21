@@ -1,4 +1,4 @@
-package com.example.manitto.api.call;
+package com.example.manitto.apicall;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
