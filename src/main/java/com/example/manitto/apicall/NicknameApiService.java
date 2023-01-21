@@ -1,6 +1,7 @@
 package com.example.manitto.apicall;
 
 import retrofit2.Call;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -14,6 +15,7 @@ import java.util.Map;
 public interface NicknameApiService {
 
     String baseUrl = "https://nickname.hwanmoo.kr";
+    JacksonConverterFactory converter = JacksonConverterFactory.create();
     @GET("/")
     Call<Map> call(@Query("format") String format, @Query("count") int count);
 }

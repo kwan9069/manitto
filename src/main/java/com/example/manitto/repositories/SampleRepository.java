@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface SampleRepository {
     String test1(User.RegisterDto registerDto);
 //    String test2(User user);
-
-
 }

@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @EnableScheduling
 @SpringBootApplication
@@ -17,8 +19,17 @@ public class ManittoApplication {
     }
 
     @Bean
-    public Retrofit.Builder apiClient(){
+    public Retrofit.Builder retrofitBuilder() {
         return new Retrofit.Builder();
+    }
+
+    @Bean
+    public JacksonConverterFactory jacksonConverterFactory(){
+        return JacksonConverterFactory.create();
+    }
+    @Bean
+    public GsonConverterFactory gsonConverterFactory(){
+        return GsonConverterFactory.create();
     }
 
 }

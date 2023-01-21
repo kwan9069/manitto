@@ -23,7 +23,7 @@ public class Mission {
     }
 
     public InfoDto toInfoDto() {
-        return new InfoDto(id,matchId,task,recommendation);
+        return new InfoDto(id, matchId, task, recommendation);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
@@ -31,6 +31,7 @@ public class Mission {
         if (to.getRecommendation() != null) from.setRecommendation(to.getRecommendation());
         return from;
     }
+
     public UpdateDto generateUpdateDto() {
         return UpdateDto.builder().build();
     }
@@ -49,7 +50,7 @@ public class Mission {
     @AllArgsConstructor
     public static class UpdateDto {
         @Builder.Default
-        private  Integer recommendation = instance.recommendation;
+        private Integer recommendation = instance.recommendation;
     }
 
     @Getter
