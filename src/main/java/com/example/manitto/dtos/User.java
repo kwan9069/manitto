@@ -14,19 +14,21 @@ public class User {
     private final String name;
     private final String email;
     private final String randomName;
+    private final String role;
     private final Boolean awareRole;
     private final Boolean prevContributor;
     private final Boolean prevReceiver;
     private final Boolean isAdmin;
     private static User instance;
 
-    public User(Long id, String username, String password, String name, String email, String randomName, Boolean awareRole, Boolean prevContributor, Boolean prevReceiver, Boolean isAdmin) {
+    public User(Long id, String username, String password, String name, String email, String randomName, String role, Boolean awareRole, Boolean prevContributor, Boolean prevReceiver, Boolean isAdmin) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.randomName = randomName;
+        this.role = role;
         this.awareRole = awareRole;
         this.prevContributor = prevContributor;
         this.prevReceiver = prevReceiver;
@@ -35,7 +37,7 @@ public class User {
     }
 
     public InfoDto toInfoDto() {
-        return new InfoDto(id, username, name, email, randomName, awareRole, prevContributor, prevReceiver, isAdmin);
+        return new InfoDto(id, username, name, email, randomName, role, awareRole, prevContributor, prevReceiver, isAdmin);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
@@ -82,6 +84,8 @@ public class User {
         @lombok.Builder.Default
         private String randomName = instance.randomName;
         @lombok.Builder.Default
+        private String role = instance.role;
+        @lombok.Builder.Default
         private Boolean awareRole = instance.awareRole;
         @lombok.Builder.Default
         private Boolean prevContributor = instance.prevContributor;
@@ -97,6 +101,7 @@ public class User {
         private final String name;
         private final String email;
         private final String randomName;
+        private final String role;
         private final Boolean awareRole;
         private final Boolean prevContributor;
         private final Boolean prevReceiver;

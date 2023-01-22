@@ -30,6 +30,7 @@
         <typeAlias alias="UserMatchRegisterDto" type="com.example.manitto.dtos.UserMatch$CreateDto"/>
         <typeAlias alias="UserMatchUpdateDto" type="com.example.manitto.dtos.UserMatch$UpdateDto"/>
         <typeAlias alias="UserMatchInfoDto" type="com.example.manitto.dtos.UserMatch$InfoDto"/>
+        <typeAlias alias="UserMatchInfoDto" type="com.example.manitto.dtos.UserMatch$ExtendedDto"/>
         <!--Mission-->
         <typeAlias alias="MissionDto" type="com.example.manitto.dtos.Mission"/>
         <typeAlias alias="MissionRegisterDto" type="com.example.manitto.dtos.Mission$CreateDto"/>
