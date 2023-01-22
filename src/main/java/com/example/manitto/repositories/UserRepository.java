@@ -4,8 +4,6 @@ import com.example.manitto.dtos.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * Created by jonghyeon on 2023/01/22,
  * Package : com.example.manitto.repositories
@@ -15,15 +13,17 @@ import java.util.List;
 public interface UserRepository {
     void registerUser(User.RegisterDto registerDto);
 
-    User getUserById(long id);
-
-    List<User> getAllUserList();
-
-    List<User> getUserListHavePrevMatch();
-
-    List<User> getUserListByRole(String role);
+    User getUserByUsername(String username);
+//
+//    User getUserById(long id);
+//
+//    List<User> getAllUserList();
+//
+//    List<User> getUserListHavePrevMatch();
+//
+//    List<User> getUserListByRole(String role);
 
     void updateUser(User.UpdateDto updateDto);
-
-    void deleteUser(long id);
+//
+//    void deleteUser(long id);
 }

@@ -10,4 +10,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface ActionRepository {
+//    void registerAction(Action.CreateDto createDto);
+//
+//    Action getActionById(long id);
+//
+//    List<Action> getActionByMatchId(long matchId);
+//
+//    List<Action> getActionByMatchIdAndType(long matchId);
+//
+//    List<Action> getActionByMatchIdAndTypeLimitDesc(long matchId, int limit);
+//
+//    void deleteAction(long id);
 }

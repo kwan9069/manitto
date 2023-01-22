@@ -57,6 +57,8 @@ public class Match {
     @ToString
     @AllArgsConstructor
     public static class UpdateDto {
+        @lombok.Builder.Default
+        private Long id = instance.id;
         @Builder.Default
         private Boolean result = instance.result;
         @Builder.Default

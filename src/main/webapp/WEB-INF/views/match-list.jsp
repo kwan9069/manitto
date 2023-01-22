@@ -1,4 +1,4 @@
-<jsp:include page="frame/header.jsp"/>
+<%@include file="frame/common.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -61,6 +61,8 @@ public class Comment {
     @ToString
     @AllArgsConstructor
     public static class UpdateDto {
+        @lombok.Builder.Default
+        private Long id = instance.id;
         @Builder.Default
         private String content = instance.content;
         @Builder.Default

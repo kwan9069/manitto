@@ -59,6 +59,8 @@ public class UserMatch {
     @ToString
     @AllArgsConstructor
     public static class UpdateDto {
+        @lombok.Builder.Default
+        private Long id = instance.id;
         @Builder.Default
         private Boolean isDonator = instance.isDonator;
         @Builder.Default

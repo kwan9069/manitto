@@ -1,4 +1,4 @@
-<jsp:include page="frame/header.jsp"/>
+<%@include file="frame/common.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +6,6 @@
     <title>Manitto | Login</title>
 </head>
 <body>
-
+<h2>login page</h2>
 </body>
 </html>

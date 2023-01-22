@@ -46,6 +46,7 @@ public class User {
         if (to.getEmail() != null) from.setEmail(to.getEmail());
         if (to.getRandomName() != null) from.setRandomName(to.getRandomName());
         if (to.getAwareRole() != null) from.setAwareRole(to.getAwareRole());
+        if (to.getRole() != null) from.setRole(to.getRole());
         if (to.getPrevContributor() != null) from.setPrevContributor(to.getPrevContributor());
         if (to.getPrevReceiver() != null) from.setPrevReceiver(to.getPrevReceiver());
         return from;
@@ -77,6 +78,8 @@ public class User {
     @ToString
     @AllArgsConstructor
     public static class UpdateDto {
+        @lombok.Builder.Default
+        private Long id = instance.id;
         @lombok.Builder.Default
         private String password = instance.password;
         @lombok.Builder.Default

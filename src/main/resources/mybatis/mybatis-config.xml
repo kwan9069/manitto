@@ -14,39 +14,28 @@
         <typeAlias alias="userInfoDto" type="com.example.manitto.dtos.User$InfoDto"/>
 
         <!--Match-->
-        <typeAlias alias="MatchDto" type="com.example.manitto.dtos.Match"/>
-        <typeAlias alias="MatchRegisterDto" type="com.example.manitto.dtos.Match$CreateDto"/>
-        <typeAlias alias="MatchUpdateDto" type="com.example.manitto.dtos.Match$UpdateDto"/>
-        <typeAlias alias="MatchInfoDto" type="com.example.manitto.dtos.Match$InfoDto"/>
-
-        <!--Comment-->
-        <typeAlias alias="CommentDto" type="com.example.manitto.dtos.Comment"/>
-        <typeAlias alias="CommentRegisterDto" type="com.example.manitto.dtos.Comment$CreateDto"/>
-        <typeAlias alias="CommentUpdateDto" type="com.example.manitto.dtos.Comment$UpdateDto"/>
-        <typeAlias alias="CommentInfoDto" type="com.example.manitto.dtos.Comment$InfoDto"/>
+        <typeAlias alias="matchDto" type="com.example.manitto.dtos.Match"/>
+        <typeAlias alias="matchRegisterDto" type="com.example.manitto.dtos.Match$CreateDto"/>
+        <typeAlias alias="matchUpdateDto" type="com.example.manitto.dtos.Match$UpdateDto"/>
+        <typeAlias alias="matchInfoDto" type="com.example.manitto.dtos.Match$InfoDto"/>
 
         <!--UserMatch-->
-        <typeAlias alias="UserMatchDto" type="com.example.manitto.dtos.UserMatch"/>
-        <typeAlias alias="UserMatchRegisterDto" type="com.example.manitto.dtos.UserMatch$CreateDto"/>
-        <typeAlias alias="UserMatchUpdateDto" type="com.example.manitto.dtos.UserMatch$UpdateDto"/>
-        <typeAlias alias="UserMatchInfoDto" type="com.example.manitto.dtos.UserMatch$InfoDto"/>
-        <typeAlias alias="UserMatchInfoDto" type="com.example.manitto.dtos.UserMatch$ExtendedDto"/>
-        <!--Mission-->
-        <typeAlias alias="MissionDto" type="com.example.manitto.dtos.Mission"/>
-        <typeAlias alias="MissionRegisterDto" type="com.example.manitto.dtos.Mission$CreateDto"/>
-        <typeAlias alias="MissionUpdateDto" type="com.example.manitto.dtos.Mission$UpdateDto"/>
-        <typeAlias alias="MissionInfoDto" type="com.example.manitto.dtos.Mission$InfoDto"/>
+        <typeAlias alias="userMatchDto" type="com.example.manitto.dtos.UserMatch"/>
+        <typeAlias alias="userMatchRegisterDto" type="com.example.manitto.dtos.UserMatch$CreateDto"/>
+        <typeAlias alias="userMatchUpdateDto" type="com.example.manitto.dtos.UserMatch$UpdateDto"/>
+        <typeAlias alias="userMatchInfoDto" type="com.example.manitto.dtos.UserMatch$InfoDto"/>
+        <typeAlias alias="userMatchExtendedDto" type="com.example.manitto.dtos.UserMatch$ExtendedDto"/>
 
-        <!--Reward-->
-        <typeAlias alias="RewardDto" type="com.example.manitto.dtos.Reward"/>
-        <typeAlias alias="RewardRegisterDto" type="com.example.manitto.dtos.Reward$CreateDto"/>
-        <typeAlias alias="RewardUpdateDto" type="com.example.manitto.dtos.Reward$UpdateDto"/>
-        <typeAlias alias="RewardInfoDto" type="com.example.manitto.dtos.Reward$InfoDto"/>
+        <!--Comment-->
+        <typeAlias alias="commentDto" type="com.example.manitto.dtos.Comment"/>
+        <typeAlias alias="commentRegisterDto" type="com.example.manitto.dtos.Comment$CreateDto"/>
+        <typeAlias alias="commentUpdateDto" type="com.example.manitto.dtos.Comment$UpdateDto"/>
+        <typeAlias alias="commentInfoDto" type="com.example.manitto.dtos.Comment$InfoDto"/>
 
-        <!--Penalty-->
-        <typeAlias alias="PenaltyDto" type="com.example.manitto.dtos.Penalty"/>
-        <typeAlias alias="PenaltyRegisterDto" type="com.example.manitto.dtos.Penalty$CreateDto"/>
-        <typeAlias alias="PenaltyUpdateDto" type="com.example.manitto.dtos.Penalty$UpdateDto"/>
-        <typeAlias alias="PenaltyInfoDto" type="com.example.manitto.dtos.Penalty$InfoDto"/>
+        <!--Action-->
+        <typeAlias alias="actionDto" type="com.example.manitto.dtos.Action"/>
+        <typeAlias alias="actionRegisterDto" type="com.example.manitto.dtos.Action$CreateDto"/>
+        <typeAlias alias="actionUpdateDto" type="com.example.manitto.dtos.Action$UpdateDto"/>
+        <typeAlias alias="actionInfoDto" type="com.example.manitto.dtos.Action$InfoDto"/>
     </typeAliases>
 </configuration>
