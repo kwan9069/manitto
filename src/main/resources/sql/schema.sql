@@ -24,15 +24,15 @@ create table `match`
     id        int(10) primary key auto_increment,
     title     varchar(50)           not null,
     match_ymd date    default now() not null,
-    round     int(10)               not null,
+    round     int(10) not null,
     archived  boolean default false not null,
     result    boolean default null
 );
 
 create table user_match
 (
-    user_id        int(10)               not null,
-    match_id       int(10)               not null,
+    user_id        int(10) not null,
+    match_id       int(10) not null,
     is_contributor boolean default false not null,
     is_receiver    boolean default false not null,
     constraint foreign key (user_id) references user (id),
@@ -42,8 +42,8 @@ create table user_match
 create table mission
 (
     id             int(10) primary key auto_increment,
-    match_id       int(10)           not null,
-    task           text              not null,
+    match_id       int(10) not null,
+    task           text not null,
     recommendation int(10) default 0 not null,
     constraint foreign key (match_id) references `match` (id)
 );
@@ -51,8 +51,8 @@ create table mission
 create table reward
 (
     id             int(10) primary key auto_increment,
-    match_id       int(10)           not null,
-    task           text              not null,
+    match_id       int(10) not null,
+    task           text not null,
     recommendation int(10) default 0 not null,
     constraint foreign key (match_id) references `match` (id)
 );
@@ -60,8 +60,8 @@ create table reward
 create table penalty
 (
     id             int(10) primary key auto_increment,
-    match_id       int(10)           not null,
-    task           text              not null,
+    match_id       int(10) not null,
+    task           text not null,
     recommendation int(10) default 0 not null,
     constraint foreign key (match_id) references `match` (id)
 );
@@ -69,15 +69,16 @@ create table penalty
 create table comment
 (
     id       int(10) primary key auto_increment,
-    user_id  int(10)                not null,
-    match_id int(10)                not null,
+    user_id  int(10) not null,
+    match_id int(10) not null,
     writer   varchar(30)            not null,
     content  text                   not null,
     write_at datetime default now() not null,
-    edited  boolean  default false not null,
+    edited   boolean  default false not null,
     constraint foreign key (user_id) references user (id),
     constraint foreign key (match_id) references `match` (id)
 );
-show tables;
+show
+tables;
 
 

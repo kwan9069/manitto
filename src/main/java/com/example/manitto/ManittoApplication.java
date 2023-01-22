@@ -1,5 +1,6 @@
 package com.example.manitto;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,6 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 @SpringBootApplication
 @MapperScan(basePackages = "com.example.manitto.repositories")
 public class ManittoApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ManittoApplication.class, args);
     }
@@ -24,12 +24,12 @@ public class ManittoApplication {
     }
 
     @Bean
-    public JacksonConverterFactory jacksonConverterFactory(){
+    public JacksonConverterFactory jacksonConverterFactory() {
         return JacksonConverterFactory.create();
     }
+
     @Bean
-    public GsonConverterFactory gsonConverterFactory(){
+    public GsonConverterFactory gsonConverterFactory() {
         return GsonConverterFactory.create();
     }
-
 }

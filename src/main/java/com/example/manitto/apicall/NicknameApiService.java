@@ -16,6 +16,7 @@ public interface NicknameApiService {
 
     String baseUrl = "https://nickname.hwanmoo.kr";
     JacksonConverterFactory converter = JacksonConverterFactory.create();
+
     @GET("/")
-    Call<Map> call(@Query("format") String format, @Query("count") int count);
+    Call<Map<String,Object>> call(@Query("format") String format, @Query("count") int count);
 }
