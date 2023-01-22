@@ -18,5 +18,5 @@ public interface NicknameApiService {
     JacksonConverterFactory converter = JacksonConverterFactory.create();
 
     @GET("/")
-    Call<Map<String,Object>> call(@Query("format") String format, @Query("count") int count);
+    Call<Map<String, Object>> call(@Query("format") String format, @Query("count") int count);
 }
