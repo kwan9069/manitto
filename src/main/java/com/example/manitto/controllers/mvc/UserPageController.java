@@ -1,5 +1,7 @@
 package com.example.manitto.controllers.mvc;
 
+import com.example.manitto.dtos.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +21,13 @@ public class UserPageController {
     @GetMapping("/register")
     public String registerPage() {
         return "register";
+    }
+
+    @GetMapping("/main")
+    public String mainPage(HttpSession session){
+        User.InfoDto info = (User.InfoDto) session.getAttribute("info");
+        if (info == null) return loginPage();
+        if (!info.getAwareRole()) return "role-check";
+        return "main";
     }
 }

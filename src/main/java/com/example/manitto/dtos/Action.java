@@ -6,7 +6,7 @@ import lombok.*;
  * Created by jonghyeon on 2023/01/20,
  * Package : com.example.manitto.dtos
  */
-
+@Getter
 public class Action {
     private final Long id;
     private final Long matchId;

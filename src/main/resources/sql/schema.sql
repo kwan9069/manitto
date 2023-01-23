@@ -7,15 +7,16 @@ drop table if exists user;
 create table user
 (
     id               int(10) primary key auto_increment,
-    username         varchar(30) unique        not null,
-    password         varchar(255)              not null,
-    name             varchar(30)               not null,
-    email            varchar(30) unique        not null,
+    username         varchar(30) unique         not null,
+    password         varchar(255)               not null,
+    name             varchar(30)                not null,
+    email            varchar(30) unique         not null,
     random_name      varchar(30) default null,
-    aware_role       boolean     default false not null,
-    prev_contributor boolean     default false not null,
-    prev_receiver    boolean     default false not null,
-    is_admin         boolean     default false not null
+    role             varchar(30) default 'none' not null,
+    aware_role       boolean     default false  not null,
+    prev_contributor boolean     default false  not null,
+    prev_receiver    boolean     default false  not null,
+    is_admin         boolean     default false  not null
 );
 create table `match`
 (

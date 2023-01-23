@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * Package : com.example.manitto.dtos
  */
 
-
+@Getter
 public class UserMatch {
     private final Long id;
     private final Long userId;

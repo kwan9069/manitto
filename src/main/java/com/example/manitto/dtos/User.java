@@ -7,6 +7,7 @@ import lombok.*;
  * Package : com.example.manitto.dtos
  */
 
+@Getter
 public class User {
     private final Long id;
     private final String username;

@@ -15,16 +15,22 @@
         update user
         set password= #{password}
           , email=#{email}
-          , randomName=#{randomName}
-          , awareRole=#{awareRole}
+          , random_name=#{randomName}
+          , aware_role=#{awareRole}
           , role=#{role}
-          , prevContributor=#{prevContributor}
-          , prevReceiver=#{prevReceiver}
+          , prev_contributor=#{prevContributor}
+          , prev_receiver=#{prevReceiver}
         where id = #{id}
     </update>
     <select id="getUserByUsername" parameterType="string" resultType="userDto">
         select *
         from user
         where username = #{username}
+    </select>
+    <select id="isExistUsername" parameterType="string" resultType="boolean">
+        select exists(select 1 from user where username = #{username})
+    </select>
+    <select id="isExistEmail" resultType="boolean">
+        select exists(select 1 from user where email = #{email})
     </select>
 </mapper>

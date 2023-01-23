@@ -4,6 +4,8 @@ import com.example.manitto.dtos.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * Created by jonghyeon on 2023/01/22,
  * Package : com.example.manitto.repositories
@@ -11,9 +13,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface UserRepository {
+
+    boolean isExistUsername(String username);
+    boolean isExistEmail(String email);
     void registerUser(User.RegisterDto registerDto);
 
-    User getUserByUsername(String username);
+    Optional<User> getUserByUsername(String username);
 //
 //    User getUserById(long id);
 //
