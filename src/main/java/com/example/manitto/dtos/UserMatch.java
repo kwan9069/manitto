@@ -14,15 +14,15 @@ public class UserMatch {
     private final Long id;
     private final Long userId;
     private final Long matchId;
-    private final Boolean isDonator;
+    private final Boolean isContributor;
     private final Boolean isReceiver;
     private static UserMatch instance;
 
-    public UserMatch(Long id, Long userId, Long matchId, Boolean isDonator, Boolean isReceiver) {
+    public UserMatch(Long id, Long userId, Long matchId, Boolean isContributor, Boolean isReceiver) {
         this.id = id;
         this.userId = userId;
         this.matchId = matchId;
-        this.isDonator = isDonator;
+        this.isContributor = isContributor;
         this.isReceiver = isReceiver;
 
         instance = this;
@@ -30,12 +30,12 @@ public class UserMatch {
 
 
     public InfoDto toInfoDto() {
-        return new InfoDto(id, userId, matchId, isDonator, isReceiver);
+        return new InfoDto(id, userId, matchId, isContributor, isReceiver);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
         UpdateDto from = UpdateDto.builder().build();
-        if (to.getIsDonator() != null) from.setIsDonator(to.getIsDonator());
+        if (to.getIsContributor() != null) from.setIsContributor(to.getIsContributor());
         if (to.getIsReceiver() != null) from.setIsReceiver(to.getIsReceiver());
         return from;
     }
@@ -50,7 +50,6 @@ public class UserMatch {
     public static final class CreateDto {
         private final Long userId;
         private final Long matchId;
-        private final String content;
     }
 
     @Getter
@@ -62,7 +61,7 @@ public class UserMatch {
         @lombok.Builder.Default
         private Long id = instance.id;
         @Builder.Default
-        private Boolean isDonator = instance.isDonator;
+        private Boolean isContributor = instance.isContributor;
         @Builder.Default
         private Boolean isReceiver = instance.isReceiver;
     }
@@ -73,7 +72,7 @@ public class UserMatch {
         private final Long id;
         private final Long userId;
         private final Long matchId;
-        private final Boolean isDonator;
+        private final Boolean isContributor;
         private final Boolean isReceiver;
     }
 

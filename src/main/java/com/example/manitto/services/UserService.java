@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 /**
  * Created by jonghyeon on 2023/01/22,
@@ -24,7 +23,7 @@ public class UserService {
     private final NicknameApiService nicknameApiService;
 
     public void registerUser(User.RegisterDto registerDto) {
-        if (repository.isExistUsername(registerDto.getUsername())) throw new RuntimeException();
+        if (repository.isExistUsername(registerDto.getUsername())) throw new RuntimeException(); // TODO: 2023/01/23 유저네임 중복 에러 핸들링
         if (repository.isExistEmail(registerDto.getEmail())) throw new RuntimeException();
         repository.registerUser(registerDto);
         User user = repository.getUserByUsername(registerDto.getUsername()).get();
@@ -32,7 +31,7 @@ public class UserService {
         try {
             callResultBody = nicknameApiService.call("json", 1).execute().body();
         } catch (IOException e) {
-            throw new RuntimeException(e); // TODO: 2023/01/22 api call error handling
+            throw new RuntimeException(e); // TODO: 2023/01/24 API Call 에러 핸들링
         }
         String randomName = ((List<String>) callResultBody.get("words")).stream().findFirst().get();
         User.UpdateDto updateDto = user.generateUpdateDto(User.UpdateDto.builder()
@@ -43,8 +42,8 @@ public class UserService {
     }
 
     public void login(User.AuthDto authDto, HttpSession session) {
-        User find = repository.getUserByUsername(authDto.getUsername()).orElseThrow(() -> new RuntimeException());
-        if (!find.getPassword().equals(authDto.getPassword())) throw new RuntimeException();
+        User find = repository.getUserByUsername(authDto.getUsername()).orElseThrow(RuntimeException::new); // TODO: 2023/01/24 Not Found User 핸들링
+        if (!find.getPassword().equals(authDto.getPassword())) throw new RuntimeException(); // TODO: 2023/01/24 Incorrect Password 핸들링
         session.setAttribute("info", find.toInfoDto());
     }
 }

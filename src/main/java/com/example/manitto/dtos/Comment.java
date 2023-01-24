@@ -52,6 +52,7 @@ public class Comment {
     public static final class CreateDto {
         private final Long userId;
         private final Long matchId;
+        private final String writer;
         private final String content;
     }
 

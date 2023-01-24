@@ -2,35 +2,60 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 위 코드가 mapper 설정을 하는 코드 -->
 
-<!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
 <mapper namespace="com.example.manitto.repositories.UserRepository">
-
     <insert id="registerUser" parameterType="userRegisterDto">
         insert into user (username, password, name, email)
         values (#{username}, #{password}, #{name}, #{email})
     </insert>
     <update id="updateUser" parameterType="userUpdateDto">
         update user
-        set password= #{password}
-          , email=#{email}
-          , random_name=#{randomName}
-          , aware_role=#{awareRole}
-          , role=#{role}
-          , prev_contributor=#{prevContributor}
-          , prev_receiver=#{prevReceiver}
+        set password = #{password}
+          , email = #{email}
+          , random_name = #{randomName}
+          , aware_role = #{awareRole}
+          , role = #{role}
+          , prev_contributor = #{prevContributor}
+          , prev_receiver = #{prevReceiver}
         where id = #{id}
     </update>
+    <delete id="deleteUser" parameterType="long">
+        delete
+        from user
+        where id = #{id};
+    </delete>
     <select id="getUserByUsername" parameterType="string" resultType="userDto">
         select *
         from user
         where username = #{username}
+    </select>
+    <select id="getUserById" parameterType="string" resultType="userDto">
+        select *
+        from user
+        where username = #{username}
+    </select>
+    <select id="getAllUserList" resultType="userDto">
+        select *
+        from user
+    </select>
+    <select id="getAllUserListLimit" parameterType="map" resultType="userDto">
+        select *
+        from user limit #{limit}
+        offset #{offset}
+    </select>
+    <select id="getUserListHavePrevMatch" resultType="userDto">
+        select * from user where prev_receiver = true or prev_contributor = true
     </select>
     <select id="isExistUsername" parameterType="string" resultType="boolean">
         select exists(select 1 from user where username = #{username})
     </select>
     <select id="isExistEmail" resultType="boolean">
         select exists(select 1 from user where email = #{email})
+    </select>
+    <select id="checkAwareRoleById" resultType="boolean">
+        select aware_role from user where id = {id}
+    </select>
+    <select id="getUserListByRole" parameterType="string" resultType="userDto">
+        select * from user where role=#{role}
     </select>
 </mapper>

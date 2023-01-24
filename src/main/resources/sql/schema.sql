@@ -35,7 +35,7 @@ create table user_match
     match_id       int(10)               not null,
     is_contributor boolean default false not null,
     is_receiver    boolean default false not null,
-    constraint foreign key (user_id) references user (id),
+    constraint foreign key (user_id) references user (id) on delete set null,
     constraint foreign key (match_id) references `match` (id)
 );
 
@@ -58,7 +58,7 @@ create table comment
     content  text                   not null,
     write_at datetime default now() not null,
     edited   boolean  default false not null,
-    constraint foreign key (user_id) references user (id),
+    constraint foreign key (user_id) references user (id) on delete set null,
     constraint foreign key (match_id) references `match` (id)
 );
 

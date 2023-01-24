@@ -42,6 +42,7 @@ public class Action {
     @Getter
     @RequiredArgsConstructor
     public static final class CreateDto {
+        private final Long matchId;
         private final String task;
         private final String type;
     }
