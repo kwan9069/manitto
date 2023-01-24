@@ -1,6 +1,7 @@
 package com.example.manitto.dtos;
 
 import lombok.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * Created by jonghyeon on 2023/01/20,
@@ -65,12 +66,18 @@ public class User {
     }
 
     @Getter
-    @RequiredArgsConstructor
     public static final class RegisterDto {
         private final String username;
         private final String password;
         private final String name;
         private final String email;
+
+        public RegisterDto(String username, String password, String name, String email) {
+            this.username = username;
+            this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+            this.name = name;
+            this.email = email;
+        }
     }
 
     @Getter

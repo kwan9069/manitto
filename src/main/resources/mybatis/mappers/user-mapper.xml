@@ -29,10 +29,10 @@
         from user
         where username = #{username}
     </select>
-    <select id="getUserById" parameterType="string" resultType="userDto">
+    <select id="getUserById" parameterType="long" resultType="userDto">
         select *
         from user
-        where username = #{username}
+        where id = #{id}
     </select>
     <select id="getAllUserList" resultType="userDto">
         select *
@@ -53,7 +53,7 @@
         select exists(select 1 from user where email = #{email})
     </select>
     <select id="checkAwareRoleById" resultType="boolean">
-        select aware_role from user where id = {id}
+        select aware_role from user where id = #{id}
     </select>
     <select id="getUserListByRole" parameterType="string" resultType="userDto">
         select * from user where role=#{role}

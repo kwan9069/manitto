@@ -41,7 +41,7 @@
     <select id="getUserMatchByMatchId" parameterType="map" resultType="userMatchDto">
         select um.id, user_id, match_id, is_contributor, is_receiver from user_match um join `match` m on m.id = um.match_id where archived = #{archived} and match_id = #{matchId}
     </select>
-    <select id="getUserMatchExtendedByUserIdAndMatchId" resultType="userMatchExtendedDto">
+    <select id="getUserMatchExtendedByUserIdAndMatchId" parameterType="map" resultType="userMatchExtendedDto">
         <include refid="selectExtended"/> where user_id = #{userId} and match_id = #{matchId}
     </select>
     <select id="getExtendedUserMatchList" parameterType="boolean" resultType="userMatchExtendedDto">
@@ -53,7 +53,7 @@
     <select id="getExtendedUserMatchListByMatchId" parameterType="map" resultType="userMatchExtendedDto">
         <include refid="selectExtended"/> where match_id = #{matchId} and archived = #{archived}
     </select>
-    <select id="getUserMatchExtendedByRound" parameterType="int" resultType="userMatchExtendedDto">
+    <select id="getExtendedUserMatchByRound" parameterType="int" resultType="userMatchExtendedDto">
         <include refid="selectExtended"/> where round = #{round}
     </select>
 

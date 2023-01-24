@@ -1,10 +1,13 @@
 package com.example.manitto.controllers.rest;
 
+import com.example.manitto.common.LoginSessionManager;
 import com.example.manitto.dtos.User;
 import com.example.manitto.services.UserService;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by jonghyeon on 2023/01/21,
@@ -17,13 +20,21 @@ import org.springframework.web.bind.annotation.*;
 public class UserApiController {
     private final UserService service;
 
+    private final LoginSessionManager loginSessionManager;
+
     @PostMapping
     public void registerUser(User.RegisterDto registerDto) {
         service.registerUser(registerDto);
     }
 
     @PostMapping("/login")
-    public void login(User.AuthDto authDto, HttpSession session){
-        service.login(authDto, session);
+    public void login(User.AuthDto authDto){
+        service.login(authDto);
+    }
+
+    @PutMapping("/role")
+    public String getUserRole(){
+        User.InfoDto info = loginSessionManager.getLoginUserInfo();
+        return service.getUserRole(info.getId());
     }
 }
