@@ -3,13 +3,17 @@ package com.example.manitto.common;
 import com.example.manitto.dtos.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * Created by jonghyeon on 2023/01/24,
  * Package : com.example.manitto.common
  */
 @Component
+@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @RequiredArgsConstructor
 public class LoginSessionManager {
     private final HttpSession session;

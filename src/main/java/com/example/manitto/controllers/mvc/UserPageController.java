@@ -2,6 +2,7 @@ package com.example.manitto.controllers.mvc;
 
 import com.example.manitto.common.LoginSessionManager;
 import com.example.manitto.dtos.User;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ public class UserPageController {
     private final LoginSessionManager loginSessionManager;
     @GetMapping("/login")
     public String loginPage() {
+        System.out.println(loginSessionManager.getSession().hashCode());
         return "login";
     }
 
