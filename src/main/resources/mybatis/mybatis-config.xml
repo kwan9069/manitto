@@ -12,5 +12,30 @@
         <typeAlias alias="userRegisterDto" type="com.example.manitto.dtos.User$RegisterDto"/>
         <typeAlias alias="userUpdateDto" type="com.example.manitto.dtos.User$UpdateDto"/>
         <typeAlias alias="userInfoDto" type="com.example.manitto.dtos.User$InfoDto"/>
+
+        <!--Match-->
+        <typeAlias alias="matchDto" type="com.example.manitto.dtos.Match"/>
+        <typeAlias alias="matchCreateDto" type="com.example.manitto.dtos.Match$CreateDto"/>
+        <typeAlias alias="matchUpdateDto" type="com.example.manitto.dtos.Match$UpdateDto"/>
+        <typeAlias alias="matchInfoDto" type="com.example.manitto.dtos.Match$InfoDto"/>
+
+        <!--UserMatch-->
+        <typeAlias alias="userMatchDto" type="com.example.manitto.dtos.UserMatch"/>
+        <typeAlias alias="userMatchCreateDto" type="com.example.manitto.dtos.UserMatch$CreateDto"/>
+        <typeAlias alias="userMatchUpdateDto" type="com.example.manitto.dtos.UserMatch$UpdateDto"/>
+        <typeAlias alias="userMatchInfoDto" type="com.example.manitto.dtos.UserMatch$InfoDto"/>
+        <typeAlias alias="userMatchExtendedDto" type="com.example.manitto.dtos.UserMatch$ExtendedDto"/>
+
+        <!--Comment-->
+        <typeAlias alias="commentDto" type="com.example.manitto.dtos.Comment"/>
+        <typeAlias alias="commentCreateDto" type="com.example.manitto.dtos.Comment$CreateDto"/>
+        <typeAlias alias="commentUpdateDto" type="com.example.manitto.dtos.Comment$UpdateDto"/>
+        <typeAlias alias="commentInfoDto" type="com.example.manitto.dtos.Comment$InfoDto"/>
+
+        <!--Action-->
+        <typeAlias alias="actionDto" type="com.example.manitto.dtos.Action"/>
+        <typeAlias alias="actionCreateDto" type="com.example.manitto.dtos.Action$CreateDto"/>
+        <typeAlias alias="actionUpdateDto" type="com.example.manitto.dtos.Action$UpdateDto"/>
+        <typeAlias alias="actionInfoDto" type="com.example.manitto.dtos.Action$InfoDto"/>
     </typeAliases>
 </configuration>

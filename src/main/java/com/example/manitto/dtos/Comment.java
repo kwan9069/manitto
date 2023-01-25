@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * Created by jonghyeon on 2023/01/20,
  * Package : com.example.manitto.dtos
  */
-
+@Getter
 public class Comment {
     private final Long id;
     private final Long userId;
@@ -52,6 +52,7 @@ public class Comment {
     public static final class CreateDto {
         private final Long userId;
         private final Long matchId;
+        private final String writer;
         private final String content;
     }
 
@@ -61,6 +62,8 @@ public class Comment {
     @ToString
     @AllArgsConstructor
     public static class UpdateDto {
+        @lombok.Builder.Default
+        private Long id = instance.id;
         @Builder.Default
         private String content = instance.content;
         @Builder.Default

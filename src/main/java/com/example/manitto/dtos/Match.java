@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * Created by jonghyeon on 2023/01/20,
  * Package : com.example.manitto.dtos
  */
-
+@Getter
 public class Match {
     private final Long id;
     private final String title;
@@ -57,6 +57,8 @@ public class Match {
     @ToString
     @AllArgsConstructor
     public static class UpdateDto {
+        @lombok.Builder.Default
+        private Long id = instance.id;
         @Builder.Default
         private Boolean result = instance.result;
         @Builder.Default

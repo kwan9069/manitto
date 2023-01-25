@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.manitto.repositories.UserMatchRepository">
+    <sql id="selectExtended">
+        select um.id,
+               user_id,
+               match_id,
+               title,
+               match_ymd,
+               round,
+               archived,
+               result,
+               username,
+               name,
+               random_name,
+               role
+        from user_match um
+                 join `match` m on m.id = um.match_id
+                 join user u on u.id = um.user_id
+    </sql>
+    <insert id="createUserMatch" parameterType="userMatchCreateDto">
+        insert into user_match (user_id, match_id) values (#{userId},#{matchId})
+    </insert>
+    <update id="updateUserMatch" parameterType="userMatchUpdateDto">
+        update user_match set is_contributor=#{isContributor}, is_receiver=#{isReceiver} where id = #{id}
+    </update>
+    <delete id="deleteUserMatch" parameterType="long">
+        delete
+        from user_match
+        where id = #{id}
+    </delete>
+    <select id="getUserMatchByUserIdAndMatchId" parameterType="map" resultType="userMatchDto">
+        select * from user_match where user_id=#{userId} and match_id=#{matchId}
+    </select>
+    <select id="getUserMatchByUserId" parameterType="map" resultType="userMatchDto">
+        select um.id, user_id, match_id, is_contributor, is_receiver from user_match um join `match` m on m.id = um.match_id where archived = #{archived} and user_id = #{userId}
+    </select>
+    <select id="getUserMatchByMatchId" parameterType="map" resultType="userMatchDto">
+        select um.id, user_id, match_id, is_contributor, is_receiver from user_match um join `match` m on m.id = um.match_id where archived = #{archived} and match_id = #{matchId}
+    </select>
+    <select id="getUserMatchExtendedByUserIdAndMatchId" parameterType="map" resultType="userMatchExtendedDto">
+        <include refid="selectExtended"/> where user_id = #{userId} and match_id = #{matchId}
+    </select>
+    <select id="getExtendedUserMatchList" parameterType="boolean" resultType="userMatchExtendedDto">
+        <include refid="selectExtended"/> where archived = #{archived}
+    </select>
+    <select id="getExtendedUserMatchListByUserId" parameterType="map" resultType="userMatchExtendedDto">
+        <include refid="selectExtended"/> where user_id = #{userId} and archived = #{archived}
+    </select>
+    <select id="getExtendedUserMatchListByMatchId" parameterType="map" resultType="userMatchExtendedDto">
+        <include refid="selectExtended"/> where match_id = #{matchId} and archived = #{archived}
+    </select>
+    <select id="getExtendedUserMatchByRound" parameterType="int" resultType="userMatchExtendedDto">
+        <include refid="selectExtended"/> where round = #{round}
+    </select>
+
+</mapper>

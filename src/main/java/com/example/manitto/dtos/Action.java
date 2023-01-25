@@ -6,24 +6,26 @@ import lombok.*;
  * Created by jonghyeon on 2023/01/20,
  * Package : com.example.manitto.dtos
  */
-
-public class Penalty {
+@Getter
+public class Action {
     private final Long id;
     private final Long matchId;
     private final String task;
     private final Integer recommendation;
-    private static Penalty instance;
+    private final String type;
+    private static Action instance;
 
-    public Penalty(Long id, Long matchId, String task, Integer recommendation) {
+    public Action(Long id, Long matchId, String task, Integer recommendation, String type) {
         this.id = id;
         this.matchId = matchId;
         this.task = task;
         this.recommendation = recommendation;
+        this.type = type;
         instance = this;
     }
 
     public InfoDto toInfoDto() {
-        return new InfoDto(id, matchId, task, recommendation);
+        return new InfoDto(id, matchId, task, recommendation, type);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
@@ -40,7 +42,9 @@ public class Penalty {
     @Getter
     @RequiredArgsConstructor
     public static final class CreateDto {
+        private final Long matchId;
         private final String task;
+        private final String type;
     }
 
     @Getter
@@ -60,5 +64,6 @@ public class Penalty {
         private final Long matchId;
         private final String task;
         private final Integer recommendation;
+        private final String type;
     }
 }
