@@ -1,6 +1,9 @@
 package com.example.manitto.dtos;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
@@ -32,18 +35,21 @@ public class Comment {
 
 
     public InfoDto toInfoDto() {
+        instance = this;
         return new InfoDto(id, userId, matchId, content, randomName, writtenYmd, edited);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
-        UpdateDto from = UpdateDto.builder().build();
+        instance = this;
+        UpdateDto from = UpdateDto.builder(instance).build();
         if (to.getContent() != null) from.setContent(to.getContent());
         if (to.getEdited() != null) from.setEdited(to.getEdited());
         return from;
     }
 
-    public UpdateDto generateUpdateDto() {
-        return UpdateDto.builder().build();
+    public UpdateDto generateUpdateDto(Comment comment) {
+        instance = this;
+        return UpdateDto.builder(comment).build();
     }
 
 
@@ -58,16 +64,42 @@ public class Comment {
 
     @Getter
     @Setter
-    @Builder
-    @ToString
     @AllArgsConstructor
     public static class UpdateDto {
-        @lombok.Builder.Default
-        private Long id = instance.id;
-        @Builder.Default
-        private String content = instance.content;
-        @Builder.Default
-        private Boolean edited = instance.edited;
+
+        public static class UpdateDtoBuilder {
+            private final Long id;
+            private String content;
+            private Boolean edited;
+
+            public UpdateDtoBuilder(Comment comment) {
+                id = comment.getId();
+                content = comment.getContent();
+                edited = comment.getEdited();
+            }
+
+            public UpdateDtoBuilder content(String content) {
+                this.content = content;
+                return this;
+            }
+
+            public UpdateDtoBuilder edited(Boolean edited) {
+                this.edited = edited;
+                return this;
+            }
+
+            public UpdateDto build() {
+                return new UpdateDto(id, content, edited);
+            }
+        }
+
+        private Long id;
+        private String content;
+        private Boolean edited;
+
+        public static UpdateDtoBuilder builder(Comment comment) {
+            return new UpdateDtoBuilder(comment);
+        }
     }
 
     @Getter

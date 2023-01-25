@@ -43,4 +43,9 @@
         from `match`
         where archived = true;
     </select>
+    <select id="getMatchByTitle" parameterType="string" resultType="matchDto">
+        select *
+        from `match`
+        where title = #{title};
+    </select>
 </mapper>

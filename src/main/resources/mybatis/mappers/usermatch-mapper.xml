@@ -22,15 +22,10 @@
                  join user u on u.id = um.user_id
     </sql>
     <insert id="createUserMatch" parameterType="userMatchCreateDto">
-        insert into user_match (user_id, match_id)
-        values (#{userId}, #{matchId})
+        insert into user_match (user_id, match_id, is_contributor, is_receiver)
+        values (#{userId}, #{matchId}, #{isContributor}, #{isReceiver})
     </insert>
-    <update id="updateUserMatch" parameterType="userMatchUpdateDto">
-        update user_match
-        set is_contributor=#{isContributor},
-            is_receiver=#{isReceiver}
-        where id = #{id}
-    </update>
+
     <delete id="deleteUserMatch" parameterType="long">
         delete
         from user_match

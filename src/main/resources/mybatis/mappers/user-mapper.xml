@@ -43,11 +43,11 @@
         from user
         limit #{limit} offset #{offset}
     </select>
-    <select id="getUserListHavePrevMatch" resultType="userDto">
+    <select id="getUserListWithoutPrevMatch" resultType="userDto">
         select *
         from user
-        where prev_receiver = true
-           or prev_contributor = true
+        where prev_receiver = false
+          and prev_contributor = false
     </select>
     <select id="isExistUsername" parameterType="string" resultType="boolean">
         select exists(select 1 from user where username = #{username})
@@ -64,5 +64,24 @@
         select *
         from user
         where role = #{role}
+    </select>
+    <select id="getUserListWithoutPrevContributor" resultType="userDto">
+        select *
+        from user
+        where prev_receiver = false
+    </select>
+    <select id="getUserListWithoutPrevReceiver" resultType="userDto">
+        select *
+        from user
+        where prev_contributor = false
+    </select>
+    <select id="getUserListHavaRole" resultType="userDto">
+        select *
+        from user
+        where role != 'none'
+    </select>
+    <select id="getTotalUserCount" resultType="int">
+        select count(*)
+        from user;
     </select>
 </mapper>

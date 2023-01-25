@@ -22,7 +22,6 @@
         <!--UserMatch-->
         <typeAlias alias="userMatchDto" type="com.example.manitto.dtos.UserMatch"/>
         <typeAlias alias="userMatchCreateDto" type="com.example.manitto.dtos.UserMatch$CreateDto"/>
-        <typeAlias alias="userMatchUpdateDto" type="com.example.manitto.dtos.UserMatch$UpdateDto"/>
         <typeAlias alias="userMatchInfoDto" type="com.example.manitto.dtos.UserMatch$InfoDto"/>
         <typeAlias alias="userMatchExtendedDto" type="com.example.manitto.dtos.UserMatch$ExtendedDto"/>
 

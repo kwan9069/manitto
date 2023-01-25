@@ -33,7 +33,5 @@ public interface UserMatchRepository {
 
     List<UserMatch.ExtendedDto> getExtendedUserMatchListByMatchId(@Param("archived") boolean archived, @Param("matchId") long matchId);
 
-    void updateUserMatch(UserMatch.UpdateDto updateDto);
-
     void deleteUserMatch(long id);
 }

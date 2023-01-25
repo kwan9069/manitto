@@ -40,11 +40,10 @@ public class UserService {
             throw new RuntimeException(e); // TODO: 2023/01/24 API Call 에러 핸들링
         }
         String randomName = ((List<String>) callResultBody.get("words")).stream().findFirst().get();
-        User.UpdateDto updateDto = user.generateUpdateDto(User.UpdateDto.builder()
+        userRepository.updateUser(User.UpdateDto.builder(user)
                 .randomName(randomName)
                 .role(Constants.ROLE_NONE)
                 .build());
-        userRepository.updateUser(updateDto);
     }
 
     public void login(User.AuthDto authDto) {
@@ -52,6 +51,7 @@ public class UserService {
         if (!BCrypt.checkpw(authDto.getPassword(), find.getPassword()))
             throw new RuntimeException(); // TODO: 2023/01/24 Incorrect Password 핸들링
         loginSessionManager.setLoginUserInfo(find.toInfoDto());
+        System.out.println(userRepository.getAllUserList().stream().map(User::toInfoDto).toList());
     }
 
     public String getUserRole(long id) {
@@ -64,7 +64,7 @@ public class UserService {
                     if (userMatch.getIsReceiver()) role.set(Constants.ROLE_RECEIVER);
                 }, () -> {
                 });
-        userRepository.updateUser(user.generateUpdateDto(User.UpdateDto.builder()
+        userRepository.updateUser(user.generateUpdateDto(User.UpdateDto.builder(user)
                 .role(role.get())
                 .awareRole(true)
                 .build()));

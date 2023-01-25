@@ -32,11 +32,19 @@ public interface UserRepository {
 
     List<User> getAllUserListLimit(@Param("limit") int limit, @Param("offset") int offset);
 
-    List<User> getUserListHavePrevMatch();
+    List<User> getUserListWithoutPrevContributor();
+
+    List<User> getUserListWithoutPrevReceiver();
+
+    List<User> getUserListWithoutPrevMatch();
 
     List<User> getUserListByRole(String role);
 
     void updateUser(User.UpdateDto updateDto);
 
     void deleteUser(long id);
+
+    List<User> getUserListHavaRole();
+
+    int getTotalUserCount();
 }

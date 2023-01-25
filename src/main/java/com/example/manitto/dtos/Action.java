@@ -1,6 +1,9 @@
 package com.example.manitto.dtos;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  * Created by jonghyeon on 2023/01/20,
@@ -29,13 +32,14 @@ public class Action {
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
-        UpdateDto from = UpdateDto.builder().build();
+        instance = this;
+        UpdateDto from = UpdateDto.builder(instance).build();
         if (to.getRecommendation() != null) from.setRecommendation(to.getRecommendation());
         return from;
     }
 
-    public UpdateDto generateUpdateDto() {
-        return UpdateDto.builder().build();
+    public UpdateDto generateUpdateDto(Action action) {
+        return UpdateDto.builder(action).build();
     }
 
 
@@ -49,12 +53,35 @@ public class Action {
 
     @Getter
     @Setter
-    @Builder
-    @ToString
     @AllArgsConstructor
     public static class UpdateDto {
-        @Builder.Default
-        private Integer recommendation = instance.recommendation;
+
+        private static class UpdateDtoBuilder {
+            private final Long id;
+            private Integer recommendation;
+
+            public UpdateDtoBuilder(Action action) {
+                id = action.getId();
+                recommendation = action.getRecommendation();
+            }
+
+            public UpdateDtoBuilder recommendation(Integer recommendation) {
+                this.recommendation = recommendation;
+                return this;
+            }
+
+            public UpdateDto build() {
+                return new UpdateDto(id, recommendation);
+            }
+
+        }
+
+        private Long id;
+        private Integer recommendation;
+
+        public static UpdateDtoBuilder builder(Action action) {
+            return new UpdateDtoBuilder(action);
+        }
     }
 
     @Getter

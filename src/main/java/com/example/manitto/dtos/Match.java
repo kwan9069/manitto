@@ -1,6 +1,9 @@
 package com.example.manitto.dtos;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
@@ -29,18 +32,21 @@ public class Match {
     }
 
     public InfoDto toInfoDto() {
+        instance = this;
         return new InfoDto(id, title, matchYmd, result, archived, round);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
-        UpdateDto from = UpdateDto.builder().build();
+        instance = this;
+        UpdateDto from = UpdateDto.builder(instance).build();
         if (to.getResult() != null) from.setResult(to.getResult());
         if (to.getArchived() != null) from.setArchived(to.getArchived());
         return from;
     }
 
-    public UpdateDto generateUpdateDto() {
-        return UpdateDto.builder().build();
+    public UpdateDto generateUpdateDto(Match match) {
+        instance = this;
+        return UpdateDto.builder(match).build();
     }
 
 
@@ -51,19 +57,60 @@ public class Match {
         private final Integer round;
     }
 
+    //    @Getter
+//    @Setter
+//    @Builder
+//    @ToString
+//    @AllArgsConstructor
+//    public static class UpdateDto {
+//        @lombok.Builder.Default
+//        private Long id = instance.id;
+//        @Builder.Default
+//        private Boolean result = instance.result;
+//        @Builder.Default
+//        private Boolean archived = instance.archived;
+//    }
     @Getter
     @Setter
-    @Builder
-    @ToString
     @AllArgsConstructor
     public static class UpdateDto {
-        @lombok.Builder.Default
-        private Long id = instance.id;
-        @Builder.Default
-        private Boolean result = instance.result;
-        @Builder.Default
-        private Boolean archived = instance.archived;
+
+        public static class UpdateDtoBuilder {
+            private final Long id;
+            private Boolean result;
+            private Boolean archived;
+
+            public UpdateDtoBuilder(Match match) {
+                id = match.getId();
+                result = match.getResult();
+                archived = match.getArchived();
+            }
+
+            public UpdateDtoBuilder result(Boolean result) {
+                this.result = result;
+                return this;
+            }
+
+            public UpdateDtoBuilder archived(Boolean archived) {
+                this.archived = archived;
+                return this;
+            }
+
+            public UpdateDto build() {
+                return new UpdateDto(id, result, archived);
+            }
+
+        }
+
+        private Long id;
+        private Boolean result;
+        private Boolean archived;
+
+        public static UpdateDtoBuilder builder(Match match) {
+            return new UpdateDtoBuilder(match);
+        }
     }
+
 
     @Getter
     @AllArgsConstructor

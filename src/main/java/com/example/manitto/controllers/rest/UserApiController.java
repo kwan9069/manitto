@@ -35,6 +35,6 @@ public class UserApiController {
     @PutMapping("/role")
     public String getUserRole() {
         User.InfoDto info = loginSessionManager.getLoginUserInfo();
-        return service.getUserRole(info.getId());
+        return info.getRole();
     }
 }

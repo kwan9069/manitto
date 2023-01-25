@@ -29,4 +29,6 @@ public interface MatchRepository {
     void updateMatch(Match.UpdateDto updateDto);
 
     void deleteMatch(long id);
+
+    Optional<Match> getMatchByTitle(String title);
 }
