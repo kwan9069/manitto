@@ -21,16 +21,24 @@
         where id = #{id}
     </delete>
     <select id="getCommentListByUserId" parameterType="long" resultType="commentDto">
-        select * from comment where user_id = #{userId}
+        select *
+        from comment
+        where user_id = #{userId}
     </select>
     <select id="getCommentListByMatchId" parameterType="map" resultType="com.example.manitto.dtos.Comment">
-        select * from comment where match_id = #{matchId}
+        select *
+        from comment
+        where match_id = #{matchId}
     </select>
     <select id="getCommentListByUserIdLimit" parameterType="long" resultType="com.example.manitto.dtos.Comment">
-        select * from comment where user_id = #{userId}
+        select *
+        from comment
+        where user_id = #{userId}
     </select>
     <select id="getCommentListByMatchIdLimit" parameterType="map" resultType="com.example.manitto.dtos.Comment">
-        select * from comment where match_id = #{matchId}
+        select *
+        from comment
+        where match_id = #{matchId}
     </select>
 
 </mapper>

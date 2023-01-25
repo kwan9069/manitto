@@ -20,6 +20,7 @@ public interface ActionRepository {
     Optional<Action> getActionById(long id);
 
     List<Action> getActionListByMatchId(long matchId);
+
     List<Action> getActionListByType(String type);
 
     List<Action> getActionListByMatchIdAndType(@Param("matchId") long matchId, @Param("type") String type);
