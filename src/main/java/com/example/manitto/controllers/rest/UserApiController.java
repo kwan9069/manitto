@@ -28,12 +28,12 @@ public class UserApiController {
     }
 
     @PostMapping("/login")
-    public void login(User.AuthDto authDto){
+    public void login(User.AuthDto authDto) {
         service.login(authDto);
     }
 
     @PutMapping("/role")
-    public String getUserRole(){
+    public String getUserRole() {
         User.InfoDto info = loginSessionManager.getLoginUserInfo();
         return service.getUserRole(info.getId());
     }

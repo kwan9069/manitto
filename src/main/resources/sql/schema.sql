@@ -6,7 +6,7 @@ drop table if exists user;
 
 create table user
 (
-    id               int(10) primary key auto_increment,
+    id               int primary key auto_increment,
     username         varchar(30) unique         not null,
     password         varchar(255)               not null,
     name             varchar(30)                not null,
@@ -20,45 +20,45 @@ create table user
 );
 create table `match`
 (
-    id        int(10) primary key auto_increment,
+    id        int primary key auto_increment,
     title     varchar(50)           not null,
     match_ymd date    default now() not null,
-    round     int(10)               not null,
+    round     int                   not null,
     archived  boolean default false not null,
     result    boolean default null
 );
 
 create table user_match
 (
-    id             int(10) primary key auto_increment,
-    user_id        int(10)               not null,
-    match_id       int(10)               not null,
+    id             int primary key auto_increment,
+    user_id        int                   not null,
+    match_id       int                   not null,
     is_contributor boolean default false not null,
     is_receiver    boolean default false not null,
-    constraint foreign key (user_id) references user (id) on delete set null,
+    constraint foreign key (user_id) references user (id),
     constraint foreign key (match_id) references `match` (id)
 );
 
 create table action
 (
-    id             int(10) primary key auto_increment,
-    type           int(10)           not null,
-    match_id       int(10)           not null,
-    task           text              not null,
-    recommendation int(10) default 0 not null,
+    id             int primary key auto_increment,
+    type           int           not null,
+    match_id       int           not null,
+    task           text          not null,
+    recommendation int default 0 not null,
     constraint foreign key (match_id) references `match` (id)
 );
 
 create table comment
 (
-    id       int(10) primary key auto_increment,
-    user_id  int(10)                not null,
-    match_id int(10)                not null,
+    id       int primary key auto_increment,
+    user_id  int                    not null,
+    match_id int                    not null,
     writer   varchar(30)            not null,
     content  text                   not null,
     write_at datetime default now() not null,
     edited   boolean  default false not null,
-    constraint foreign key (user_id) references user (id) on delete set null,
+    constraint foreign key (user_id) references user (id),
     constraint foreign key (match_id) references `match` (id)
 );
 

@@ -10,13 +10,13 @@
     </insert>
     <update id="updateUser" parameterType="userUpdateDto">
         update user
-        set password = #{password}
-          , email = #{email}
-          , random_name = #{randomName}
-          , aware_role = #{awareRole}
-          , role = #{role}
+        set password         = #{password}
+          , email            = #{email}
+          , random_name      = #{randomName}
+          , aware_role       = #{awareRole}
+          , role             = #{role}
           , prev_contributor = #{prevContributor}
-          , prev_receiver = #{prevReceiver}
+          , prev_receiver    = #{prevReceiver}
         where id = #{id}
     </update>
     <delete id="deleteUser" parameterType="long">
@@ -40,11 +40,14 @@
     </select>
     <select id="getAllUserListLimit" parameterType="map" resultType="userDto">
         select *
-        from user limit #{limit}
-        offset #{offset}
+        from user
+        limit #{limit} offset #{offset}
     </select>
     <select id="getUserListHavePrevMatch" resultType="userDto">
-        select * from user where prev_receiver = true or prev_contributor = true
+        select *
+        from user
+        where prev_receiver = true
+           or prev_contributor = true
     </select>
     <select id="isExistUsername" parameterType="string" resultType="boolean">
         select exists(select 1 from user where username = #{username})
@@ -53,9 +56,13 @@
         select exists(select 1 from user where email = #{email})
     </select>
     <select id="checkAwareRoleById" resultType="boolean">
-        select aware_role from user where id = #{id}
+        select aware_role
+        from user
+        where id = #{id}
     </select>
     <select id="getUserListByRole" parameterType="string" resultType="userDto">
-        select * from user where role=#{role}
+        select *
+        from user
+        where role = #{role}
     </select>
 </mapper>

@@ -8,19 +8,28 @@
 <mapper namespace="com.example.manitto.repositories.ActionRepository">
 
     <insert id="createAction" parameterType="actionCreateDto">
-        insert into action (type, match_id, task) values (#{type},#{matchId},#{task})
+        insert into action (type, match_id, task)
+        values (#{type}, #{matchId}, #{task})
     </insert>
     <delete id="deleteAction">
-        delete from action where id=#{id}
+        delete
+        from action
+        where id = #{id}
     </delete>
     <select id="getActionById" parameterType="long" resultType="actionDto">
-        select * from action where id=#{id}
+        select *
+        from action
+        where id = #{id}
     </select>
     <select id="getActionListByMatchId" parameterType="long" resultType="actionDto">
-        select * from action where match_id=#{matchId}
+        select *
+        from action
+        where match_id = #{matchId}
     </select>
     <select id="getActionListByType" parameterType="string" resultType="actionDto">
-        select * from action where type=#{type}
+        select *
+        from action
+        where type = #{type}
     </select>
     <select id="getActionListByMatchIdAndType" parameterType="map" resultType="actionDto">
         select *

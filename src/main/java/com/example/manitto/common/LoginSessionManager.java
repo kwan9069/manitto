@@ -18,23 +18,25 @@ import org.springframework.web.context.WebApplicationContext;
 public class LoginSessionManager {
     private final HttpSession session;
 
-    public User.InfoDto getLoginUserInfo(){
-        if (session.getAttribute("info") == null) throw new RuntimeException(); // TODO: 2023/01/24 session not exist exception
-        return (User.InfoDto)session.getAttribute("info");
+    public User.InfoDto getLoginUserInfo() {
+        if (session.getAttribute("info") == null)
+            throw new RuntimeException(); // TODO: 2023/01/24 session not exist exception
+        return (User.InfoDto) session.getAttribute("info");
     }
 
-    public boolean haveLoginSession(){
+    public boolean haveLoginSession() {
         return session.getAttribute("info") != null;
     }
-    public HttpSession getSession(){
+
+    public HttpSession getSession() {
         return session;
     }
 
-    public void setLoginUserInfo(User.InfoDto info){
+    public void setLoginUserInfo(User.InfoDto info) {
         session.setAttribute("info", info);
     }
 
-    public void removeLoginUserInfo(){
+    public void removeLoginUserInfo() {
         session.removeAttribute("info");
     }
 

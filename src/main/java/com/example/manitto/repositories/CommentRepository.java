@@ -17,10 +17,14 @@ public interface CommentRepository {
     void createComment(Comment.CreateDto createDto);
 
     List<Comment> getCommentListByUserId(long userId);
+
     List<Comment> getCommentListByUserIdLimit(@Param("userId") long userId, @Param("limit") int limit, @Param("offset") int offset);
 
     List<Comment> getCommentListByMatchId(long matchId);
+
     List<Comment> getCommentListByMatchIdLimit(@Param("matchId") long matchId, @Param("limit") int limit, @Param("offset") int offset);
+
     void updateComment(Comment.UpdateDto updateDto);
+
     void deleteComment(long id);
 }
