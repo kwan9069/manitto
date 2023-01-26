@@ -38,11 +38,15 @@
         select *
         from user
     </select>
+    <select id="getTotalUser" resultType="int" >
+	select count(*) from user
+	</select>
     <select id="getAllUserListLimit" parameterType="map" resultType="userDto">
         select *
         from user
-        limit #{limit} offset #{offset}
+        limit order by name #{limit},5
     </select>
+    
     <select id="getUserListHavePrevMatch" resultType="userDto">
         select *
         from user

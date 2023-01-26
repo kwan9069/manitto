@@ -78,5 +78,8 @@ public class UserService {
     userRepository.getAllUserList().forEach(user  -> list.add(user.toInfoDto()));
     return list;
     }
+    public String getTotalUser() {
     
+    	return userRepository.getAllUserList();
+    }
 }
