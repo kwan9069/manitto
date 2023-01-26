@@ -55,7 +55,6 @@ public class Match {
     public static final class CreateDto {
         private final String title;
         private final Integer round;
-
         private final String status;
     }
 
