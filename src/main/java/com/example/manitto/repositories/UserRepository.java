@@ -28,13 +28,16 @@ public interface UserRepository {
 
     boolean checkAwareRoleById(long id);
 
-    List<User> getAllUserList();
+    List<User> getAllUserList(int limit);
 
-    List<User> getAllUserListLimit(@Param("limit") int limit, @Param("offset") int offset);
+    List<User> getAllUserListLimit();
+    
+    int getTotalUser();
 
     List<User> getUserListHavePrevMatch();
 
     List<User> getUserListByRole(String role);
+    
 
     void updateUser(User.UpdateDto updateDto);
 

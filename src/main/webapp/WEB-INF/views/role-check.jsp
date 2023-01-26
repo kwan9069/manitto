@@ -13,6 +13,7 @@
 <div id="role-result">
 </div>
 <div>
+${sessionScope.info}
     <button id="main-btn" hidden>메인페이지 이동</button>
 </div>
 </body>

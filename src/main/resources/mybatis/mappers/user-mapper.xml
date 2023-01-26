@@ -34,9 +34,10 @@
         from user
         where id = #{id}
     </select>
-    <select id="getAllUserList" resultType="userDto">
+    <select id="getAllUserList" parameterType="int" resultType="userDto">
         select *
         from user
+        limit order by name #{limit},5
     </select>
     <select id="getTotalUser" resultType="int" >
 	select count(*) from user

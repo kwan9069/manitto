@@ -73,13 +73,15 @@ public class UserService {
         loginSessionManager.updateLoginUserInfo(updated.toInfoDto());
         return role.get();
     }
-    public List<User.InfoDto> getAllUserList() {
+    
+    public List<User.InfoDto> getAllUserList(int limit) {
     List<User.InfoDto> list = new ArrayList<>();
-    userRepository.getAllUserList().forEach(user  -> list.add(user.toInfoDto()));
+    userRepository.getAllUserList(limit).forEach(user  -> list.add(user.toInfoDto()));
     return list;
     }
-    public String getTotalUser() {
     
-    	return userRepository.getAllUserList();
+    public int getTotalUser() {
+     	return userRepository.getTotalUser();
     }
+    
 }

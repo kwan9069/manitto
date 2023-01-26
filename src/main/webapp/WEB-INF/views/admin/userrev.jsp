@@ -11,18 +11,18 @@
 <h1>${param.page } 페이지의 게시물 출력</h1>
 
 <table border=3>
-	<c:forEach items="${useLlist }" var = "board"> <!-- list라는 이름의 모델 -->
-		<tr><td>${board.seq }</td><td><a href="oneboard?seq=${board.seq }">${board.title }</a></td><td>${board.writer }</td></tr>
+	<c:forEach items="${list}" var = "board"> <!-- list라는 이름의 모델 -->
+		<tr><td>${board.id }</td><td>${board.username}</td><td>${board.name}</td></tr>
 	</c:forEach>
 </table>
 <% 
 	int totalcount = (Integer)request.getAttribute("totalboard"); /* totalboard라는 이름의 모델 */
 	int totalpage = 0;
-	if(totalcount % 3 == 0){
-		totalpage = totalcount / 3;
+	if(totalcount % 5 == 0){
+		totalpage = totalcount / 5;
 	}
 	else{
-		totalpage = totalcount / 3 + 1;
+		totalpage = totalcount / 5 + 1;
 	}
 	for(int i = 1; i <= totalpage; i++){
 	%>

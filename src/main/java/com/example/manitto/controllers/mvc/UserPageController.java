@@ -47,30 +47,21 @@ public class UserPageController {
         return "main";
     }
     
-    @GetMapping("/userrev") 
-    public ModelAndView getAllUserList(){
-    	List<User.InfoDto> userList =   userService.getAllUserList();
-    	ModelAndView mv = new ModelAndView();
-    	mv.addObject("userList", userList);
-    	mv.setViewName("admin/userrev");
-    	return mv;
-    }
     
-    @RequestMapping("/userrev")
+    @GetMapping("/userrev")
 	public ModelAndView getAllUseLis(@RequestParam(value="page", required=false, defaultValue="1") int page) {
 		
 		//몇페이지 구성 선택 가능 보여주는 링크 
 		//1.select count(*) from board=int-nil 저장
 		//2.select * from board limit (page -1)*3,3-list-model 저장
 		//3.board/list 뷰 	
-    	List<User.InfoDto> userList = userService.getAllUserList();
+    	int totalboard = userService.getTotalUser();
 		int limit = (page-1)*5;
-		List<> list = service.getBoardList(limit);
-		
+		List<User.InfoDto> userList = userService.getAllUserList(limit);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("totalboard", totalboard);
-		mv.addObject("list",list);
-		mv.setViewName("board/list");
+		mv.addObject("list",userList);
+		mv.setViewName("admin/userrev");
 		return mv;
 	}
 }

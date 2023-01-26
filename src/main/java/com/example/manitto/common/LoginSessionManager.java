@@ -34,6 +34,7 @@ public class LoginSessionManager {
 
     public void setLoginUserInfo(User.InfoDto info) {
         session.setAttribute("info", info);
+        System.out.println(session.getAttribute("info"));
     }
 
     public void removeLoginUserInfo() {
