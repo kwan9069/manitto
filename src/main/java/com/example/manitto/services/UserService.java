@@ -64,4 +64,10 @@ public class UserService {
         }
         return user.getRole();
     }
+
+    public List<User.InfoDto> getUserList() {
+        return userRepository.getAllUserList().stream().filter(user -> !user.getId().equals(loginSessionManager.getLoginUserInfo().getId()))
+                .map(user -> user.toInfoDto())
+                .toList();
+    }
 }

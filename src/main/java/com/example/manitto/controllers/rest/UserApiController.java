@@ -6,6 +6,8 @@ import com.example.manitto.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by jonghyeon on 2023/01/21,
  * Package : com.example.manitto.controllers.rest
@@ -37,5 +39,10 @@ public class UserApiController {
     @GetMapping("/logout")
     public void logout(){
         loginSessionManager.removeLoginUserInfo();
+    }
+
+    @GetMapping("/list")
+    public List<User.InfoDto> getUserList(){
+        return service.getUserList();
     }
 }

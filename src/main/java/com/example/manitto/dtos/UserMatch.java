@@ -64,10 +64,10 @@ public class UserMatch {
         private final String name;
         private final String randomName;
         private final String role;
-        private final String title;
         private final Timestamp matchYmd;
-        private final Boolean result;
+        private final String title;
         private final String status;
+        private final Boolean result;
         private final Integer round;
     }
 }
