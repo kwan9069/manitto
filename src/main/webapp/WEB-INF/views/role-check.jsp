@@ -7,6 +7,7 @@
     <script src="<c:url value="/static/js/role-check.js"/>"></script>
 </head>
 <body>
+<jsp:include page="frame/header.jsp" /><br>
 <h2>role check page</h2>
 <button id="check-btn">역할 확인 버튼</button>
 <div id="role-result">

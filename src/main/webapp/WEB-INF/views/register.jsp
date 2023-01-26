@@ -7,6 +7,7 @@
     <script src="<c:url value="/static/js/register.js"/>"></script>
 </head>
 <body>
+<jsp:include page="frame/header.jsp" /><br>
 <div>
     <form id="register-form">
         <label for="username">아이디 : </label><input type="text" id="username" name="username"> <br>

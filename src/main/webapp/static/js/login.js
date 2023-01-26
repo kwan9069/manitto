@@ -10,7 +10,7 @@ $(() => {
         })
             .done(() => {
                 alert("로그인 성공")
-                location.replace("main")
+                location.replace("/user/main")
             })
             .fail((xhr, status, error) => {
                 alert("로그인 실패")

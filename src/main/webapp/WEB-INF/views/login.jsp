@@ -7,6 +7,7 @@
     <script src="<c:url value="/static/js/login.js"/>"></script>
 </head>
 <body>
+<jsp:include page="frame/header.jsp" /><br>
 <form id="login-form">
     <label for="username">아이디 : </label><input type="text" id="username" name="username"> <br>
     <label for="password">비밀번호 : </label><input type="password" id="password" name="password"><br>

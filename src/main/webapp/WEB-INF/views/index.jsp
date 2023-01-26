@@ -7,6 +7,7 @@
     <title>Manitto | Welcome</title>
 </head>
 <body>
+<jsp:include page="frame/header.jsp" /><br>
 <h2>시작페이지</h2>
 <c:if test="${ sessionScope.info == null }">
     <a href="/user/login">로그인</a><br>
