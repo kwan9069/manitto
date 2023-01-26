@@ -3,7 +3,6 @@ package com.example.manitto.controllers.rest;
 import com.example.manitto.dtos.User;
 import com.example.manitto.services.UserMatchService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
