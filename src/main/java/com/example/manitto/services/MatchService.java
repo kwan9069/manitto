@@ -1,7 +1,11 @@
 package com.example.manitto.services;
 
+import com.example.manitto.dtos.Match;
 import com.example.manitto.repositories.MatchRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,4 +16,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MatchService {
     private final MatchRepository matchRepository;
+    
+    public List<Match> getMatchListActive(){
+    		return matchRepository.getMatchListActive();
+    	
+    };
 }

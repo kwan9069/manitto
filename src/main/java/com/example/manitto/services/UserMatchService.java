@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserMatchService {
     private final UserMatchRepository userMatchRepository;
-
     private final UserRepository userRepository;
 
     private final LoginSessionManager loginSessionManager;
