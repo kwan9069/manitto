@@ -22,11 +22,14 @@ public interface MatchRepository {
 
     List<Match> getAllMatchList();
 
-    List<Match> getMatchListActivated();
+    List<Match> getMatchListActive();
 
     List<Match> getMatchListArchived();
+    List<Match> getMatchListWaiting();
 
     void updateMatch(Match.UpdateDto updateDto);
 
     void deleteMatch(long id);
+
+    Optional<Match> getMatchByTitle(String title);
 }

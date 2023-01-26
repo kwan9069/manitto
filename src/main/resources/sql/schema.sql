@@ -21,11 +21,11 @@ create table user
 create table `match`
 (
     id        int primary key auto_increment,
-    title     varchar(50)           not null,
-    match_ymd date    default now() not null,
-    round     int                   not null,
-    archived  boolean default false not null,
-    result    boolean default null
+    title     varchar(255)               not null,
+    match_ymd date         default now() not null,
+    round     int                        not null,
+    `status`  varchar(100) default false not null,
+    result    boolean      default null
 );
 
 create table user_match

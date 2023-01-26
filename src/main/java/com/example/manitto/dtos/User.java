@@ -39,11 +39,13 @@ public class User {
     }
 
     public InfoDto toInfoDto() {
+        instance = this;
         return new InfoDto(id, username, name, email, randomName, role, awareRole, prevContributor, prevReceiver, isAdmin);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
-        UpdateDto from = UpdateDto.builder().build();
+        instance = this;
+        UpdateDto from = UpdateDto.builder(instance).build();
         if (to.getPassword() != null) from.setPassword(to.getPassword());
         if (to.getEmail() != null) from.setEmail(to.getEmail());
         if (to.getRandomName() != null) from.setRandomName(to.getRandomName());
@@ -54,8 +56,8 @@ public class User {
         return from;
     }
 
-    public UpdateDto generateUpdateDto() {
-        return UpdateDto.builder().build();
+    public UpdateDto generateUpdateDto(User user) {
+        return UpdateDto.builder(user).build();
     }
 
     @Getter
@@ -82,30 +84,88 @@ public class User {
 
     @Getter
     @Setter
-    @Builder
-    @ToString
     @AllArgsConstructor
     public static class UpdateDto {
-        @lombok.Builder.Default
-        private Long id = instance.id;
-        @lombok.Builder.Default
-        private String password = instance.password;
-        @lombok.Builder.Default
-        private String email = instance.email;
-        @lombok.Builder.Default
-        private String randomName = instance.randomName;
-        @lombok.Builder.Default
-        private String role = instance.role;
-        @lombok.Builder.Default
-        private Boolean awareRole = instance.awareRole;
-        @lombok.Builder.Default
-        private Boolean prevContributor = instance.prevContributor;
-        @lombok.Builder.Default
-        private Boolean prevReceiver = instance.prevReceiver;
+
+        public static class UpdateDtoBuilder {
+            private final Long id;
+            private String password;
+            private String email;
+            private String randomName;
+            private String role;
+            private Boolean awareRole;
+            private Boolean prevContributor;
+            private Boolean prevReceiver;
+
+            public UpdateDtoBuilder(User user) {
+                id = user.getId();
+                password = user.getPassword();
+                email = user.getEmail();
+                randomName = user.getRandomName();
+                role = user.getRole();
+                awareRole = user.getAwareRole();
+                prevContributor = user.getPrevContributor();
+                prevReceiver = user.getPrevReceiver();
+            }
+
+            public UpdateDtoBuilder password(String password) {
+                this.password = password;
+                return this;
+            }
+
+            public UpdateDtoBuilder email(String email) {
+                this.email = email;
+                return this;
+            }
+
+            public UpdateDtoBuilder randomName(String randomName) {
+                this.randomName = randomName;
+                return this;
+            }
+
+            public UpdateDtoBuilder role(String role) {
+                this.role = role;
+                return this;
+            }
+
+            public UpdateDtoBuilder awareRole(Boolean awareRole) {
+                this.awareRole = awareRole;
+                return this;
+            }
+
+            public UpdateDtoBuilder prevContributor(Boolean prevContributor) {
+                this.prevContributor = prevContributor;
+                return this;
+            }
+
+            public UpdateDtoBuilder prevReceiver(Boolean prevReceiver) {
+                this.prevReceiver = prevReceiver;
+                return this;
+            }
+
+            public UpdateDto build() {
+                return new UpdateDto(id, password, email, randomName, role, awareRole, prevContributor, prevReceiver);
+            }
+
+        }
+
+        private Long id;
+        private String password;
+        private String email;
+        private String randomName;
+        private String role;
+        private Boolean awareRole;
+        private Boolean prevContributor;
+        private Boolean prevReceiver;
+
+        public static UpdateDtoBuilder builder(User user) {
+            return new UpdateDtoBuilder(user);
+        }
     }
 
     @Getter
     @AllArgsConstructor
+    @ToString
     public static final class InfoDto {
         private final long id;
         private final String username;

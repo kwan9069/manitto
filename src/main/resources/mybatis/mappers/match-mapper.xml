@@ -5,13 +5,13 @@
 
 <mapper namespace="com.example.manitto.repositories.MatchRepository">
     <insert id="createMatch" parameterType="matchCreateDto">
-        insert into `match` (title, round)
-        values (#{title}, #{round})
+        insert into `match` (title, round, status)
+        values (#{title}, #{round}, #{status})
     </insert>
     <update id="updateMatch" parameterType="matchUpdateDto">
         update `match`
         set result   = #{result},
-            archived = #{archived}
+            `status` = #{status}
         where id = #{id}
     </update>
     <delete id="deleteMatch" parameterType="long">
@@ -33,14 +33,24 @@
         select *
         from `match`;
     </select>
-    <select id="getMatchListActivated" resultType="matchDto">
+    <select id="getMatchListActive" resultType="matchDto">
         select *
         from `match`
-        where archived = false;
+        where `status` = 'active';
     </select>
     <select id="getMatchListArchived" resultType="matchDto">
         select *
         from `match`
-        where archived = true;
+        where `status` = 'archived';
+    </select>
+    <select id="getMatchListWaiting" resultType="matchDto">
+        select *
+        from `match`
+        where `status` = 'waiting';
+    </select>
+    <select id="getMatchByTitle" parameterType="string" resultType="matchDto">
+        select *
+        from `match`
+        where title = #{title};
     </select>
 </mapper>

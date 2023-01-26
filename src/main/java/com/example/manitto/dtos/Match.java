@@ -1,6 +1,9 @@
 package com.example.manitto.dtos;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
@@ -14,33 +17,36 @@ public class Match {
     private final String title;
     private final Timestamp matchYmd;
     private final Boolean result;
-    private final Boolean archived;
+    private final String status;
     private final Integer round;
     private static Match instance;
 
-    public Match(Long id, String title, Timestamp matchYmd, Boolean result, Boolean archived, Integer round) {
+    public Match(Long id, String title, Timestamp matchYmd, Boolean result, String status, Integer round) {
         this.id = id;
         this.title = title;
         this.matchYmd = matchYmd;
         this.result = result;
-        this.archived = archived;
+        this.status = status;
         this.round = round;
         instance = this;
     }
 
     public InfoDto toInfoDto() {
-        return new InfoDto(id, title, matchYmd, result, archived, round);
+        instance = this;
+        return new InfoDto(id, title, matchYmd, result, status, round);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
-        UpdateDto from = UpdateDto.builder().build();
+        instance = this;
+        UpdateDto from = UpdateDto.builder(instance).build();
         if (to.getResult() != null) from.setResult(to.getResult());
-        if (to.getArchived() != null) from.setArchived(to.getArchived());
+        if (to.getStatus() != null) from.setStatus(to.getStatus());
         return from;
     }
 
-    public UpdateDto generateUpdateDto() {
-        return UpdateDto.builder().build();
+    public UpdateDto generateUpdateDto(Match match) {
+        instance = this;
+        return UpdateDto.builder(match).build();
     }
 
 
@@ -49,21 +55,51 @@ public class Match {
     public static final class CreateDto {
         private final String title;
         private final Integer round;
+
+        private final String status;
     }
 
     @Getter
     @Setter
-    @Builder
-    @ToString
     @AllArgsConstructor
     public static class UpdateDto {
-        @lombok.Builder.Default
-        private Long id = instance.id;
-        @Builder.Default
-        private Boolean result = instance.result;
-        @Builder.Default
-        private Boolean archived = instance.archived;
+
+        public static class UpdateDtoBuilder {
+            private final Long id;
+            private Boolean result;
+            private String status;
+
+            public UpdateDtoBuilder(Match match) {
+                id = match.getId();
+                result = match.getResult();
+                status = match.getStatus();
+            }
+
+            public UpdateDtoBuilder result(Boolean result) {
+                this.result = result;
+                return this;
+            }
+
+            public UpdateDtoBuilder status(String status) {
+                this.status = status;
+                return this;
+            }
+
+            public UpdateDto build() {
+                return new UpdateDto(id, result, status);
+            }
+
+        }
+
+        private Long id;
+        private Boolean result;
+        private String status;
+
+        public static UpdateDtoBuilder builder(Match match) {
+            return new UpdateDtoBuilder(match);
+        }
     }
+
 
     @Getter
     @AllArgsConstructor
@@ -72,7 +108,7 @@ public class Match {
         private final String title;
         private final Timestamp matchYmd;
         private final Boolean result;
-        private final Boolean archived;
+        private final String status;
         private final Integer round;
     }
 }

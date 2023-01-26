@@ -12,7 +12,8 @@
 <div id="role-result">
 </div>
 <div>
-    <button id="main-btn" hidden>메인페이지 이동</button>
+<%--    <button id="main-btn" hidden>메인페이지 이동</button>--%>
+    <button id="main-btn" class="btn"  onclick="location.replace('/user/main')" hidden>메인페이지 이동</button>
 </div>
 </body>
 </html>

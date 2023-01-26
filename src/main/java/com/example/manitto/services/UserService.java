@@ -40,11 +40,10 @@ public class UserService {
             throw new RuntimeException(e); // TODO: 2023/01/24 API Call 에러 핸들링
         }
         String randomName = ((List<String>) callResultBody.get("words")).stream().findFirst().get();
-        User.UpdateDto updateDto = user.generateUpdateDto(User.UpdateDto.builder()
+        userRepository.updateUser(User.UpdateDto.builder(user)
                 .randomName(randomName)
                 .role(Constants.ROLE_NONE)
                 .build());
-        userRepository.updateUser(updateDto);
     }
 
     public void login(User.AuthDto authDto) {
@@ -56,20 +55,13 @@ public class UserService {
 
     public String getUserRole(long id) {
         User user = userRepository.getUserById(id).get();
-        if (user.getAwareRole()) return user.getRole();
-        AtomicReference<String> role = new AtomicReference<>(Constants.ROLE_NONE);
-        userMatchRepository.getUserMatchByUserId(false, user.getId())
-                .stream().findFirst().ifPresentOrElse(userMatch -> {
-                    if (userMatch.getIsContributor()) role.set(Constants.ROLE_CONTRIBUTOR);
-                    if (userMatch.getIsReceiver()) role.set(Constants.ROLE_RECEIVER);
-                }, () -> {
-                });
-        userRepository.updateUser(user.generateUpdateDto(User.UpdateDto.builder()
-                .role(role.get())
-                .awareRole(true)
-                .build()));
-        User updated = userRepository.getUserById(id).get();
-        loginSessionManager.updateLoginUserInfo(updated.toInfoDto());
-        return role.get();
+        if (!user.getAwareRole()) {
+            userRepository.updateUser(user.generateUpdateDto(User.UpdateDto.builder(user)
+                    .awareRole(true)
+                    .build()));
+            User updated = userRepository.getUserById(id).get();
+            loginSessionManager.updateLoginUserInfo(updated.toInfoDto());
+        }
+        return user.getRole();
     }
 }
