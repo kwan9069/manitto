@@ -5,21 +5,21 @@
 
 <mapper namespace="com.example.manitto.repositories.UserMatchRepository">
     <sql id="selectExtended">
-        select um.id,
+        select um.id as id,
                user_id,
                match_id,
-               title,
-               match_ymd,
-               round,
-               `status`,
-               result,
                username,
                name,
                random_name,
-               role
+               role,
+               match_ymd,
+               title,
+               `status`,
+               result,
+               round
         from user_match um
-                 join `match` m on m.id = um.match_id
                  join user u on u.id = um.user_id
+                 join `match` m on m.id = um.match_id
     </sql>
     <insert id="createUserMatch" parameterType="userMatchCreateDto">
         insert into user_match (user_id, match_id, is_contributor, is_receiver)
@@ -55,7 +55,7 @@
         <include refid="selectExtended"/>
         where user_id = #{userId} and match_id = #{matchId}
     </select>
-    <select id="getExtendedUserMatchList" parameterType="boolean" resultType="userMatchExtendedDto">
+    <select id="getExtendedUserMatchList" parameterType="string" resultType="userMatchExtendedDto">
         <include refid="selectExtended"/>
         where `status` = #{status}
     </select>
