@@ -67,7 +67,7 @@ public class UserMatch {
         private final String title;
         private final Timestamp matchYmd;
         private final Boolean result;
-        private final Boolean archived;
+        private final String status;
         private final Integer round;
     }
 }

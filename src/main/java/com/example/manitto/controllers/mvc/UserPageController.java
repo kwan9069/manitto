@@ -19,7 +19,6 @@ public class UserPageController {
 
     @GetMapping("/login")
     public String loginPage() {
-        System.out.println(loginSessionManager.getSession().hashCode());
         return "login";
     }
 
@@ -34,5 +33,10 @@ public class UserPageController {
         if (info == null) return loginPage();
         if (!info.getAwareRole()) return "role-check";
         return "main";
+    }
+
+    @GetMapping("/match-list")
+    public String matchList() {
+        return "match-list";
     }
 }

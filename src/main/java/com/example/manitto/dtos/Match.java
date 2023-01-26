@@ -17,30 +17,30 @@ public class Match {
     private final String title;
     private final Timestamp matchYmd;
     private final Boolean result;
-    private final Boolean archived;
+    private final String status;
     private final Integer round;
     private static Match instance;
 
-    public Match(Long id, String title, Timestamp matchYmd, Boolean result, Boolean archived, Integer round) {
+    public Match(Long id, String title, Timestamp matchYmd, Boolean result, String status, Integer round) {
         this.id = id;
         this.title = title;
         this.matchYmd = matchYmd;
         this.result = result;
-        this.archived = archived;
+        this.status = status;
         this.round = round;
         instance = this;
     }
 
     public InfoDto toInfoDto() {
         instance = this;
-        return new InfoDto(id, title, matchYmd, result, archived, round);
+        return new InfoDto(id, title, matchYmd, result, status, round);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
         instance = this;
         UpdateDto from = UpdateDto.builder(instance).build();
         if (to.getResult() != null) from.setResult(to.getResult());
-        if (to.getArchived() != null) from.setArchived(to.getArchived());
+        if (to.getStatus() != null) from.setStatus(to.getStatus());
         return from;
     }
 
@@ -55,21 +55,10 @@ public class Match {
     public static final class CreateDto {
         private final String title;
         private final Integer round;
+
+        private final String status;
     }
 
-    //    @Getter
-//    @Setter
-//    @Builder
-//    @ToString
-//    @AllArgsConstructor
-//    public static class UpdateDto {
-//        @lombok.Builder.Default
-//        private Long id = instance.id;
-//        @Builder.Default
-//        private Boolean result = instance.result;
-//        @Builder.Default
-//        private Boolean archived = instance.archived;
-//    }
     @Getter
     @Setter
     @AllArgsConstructor
@@ -78,12 +67,12 @@ public class Match {
         public static class UpdateDtoBuilder {
             private final Long id;
             private Boolean result;
-            private Boolean archived;
+            private String status;
 
             public UpdateDtoBuilder(Match match) {
                 id = match.getId();
                 result = match.getResult();
-                archived = match.getArchived();
+                status = match.getStatus();
             }
 
             public UpdateDtoBuilder result(Boolean result) {
@@ -91,20 +80,20 @@ public class Match {
                 return this;
             }
 
-            public UpdateDtoBuilder archived(Boolean archived) {
-                this.archived = archived;
+            public UpdateDtoBuilder status(String status) {
+                this.status = status;
                 return this;
             }
 
             public UpdateDto build() {
-                return new UpdateDto(id, result, archived);
+                return new UpdateDto(id, result, status);
             }
 
         }
 
         private Long id;
         private Boolean result;
-        private Boolean archived;
+        private String status;
 
         public static UpdateDtoBuilder builder(Match match) {
             return new UpdateDtoBuilder(match);
@@ -119,7 +108,7 @@ public class Match {
         private final String title;
         private final Timestamp matchYmd;
         private final Boolean result;
-        private final Boolean archived;
+        private final String status;
         private final Integer round;
     }
 }

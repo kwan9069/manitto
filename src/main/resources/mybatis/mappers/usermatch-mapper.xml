@@ -11,7 +11,7 @@
                title,
                match_ymd,
                round,
-               archived,
+               `status`,
                result,
                username,
                name,
@@ -41,14 +41,14 @@
         select um.id, user_id, match_id, is_contributor, is_receiver
         from user_match um
                  join `match` m on m.id = um.match_id
-        where archived = #{archived}
+        where `status` = #{status}
           and user_id = #{userId}
     </select>
     <select id="getUserMatchByMatchId" parameterType="map" resultType="userMatchDto">
         select um.id, user_id, match_id, is_contributor, is_receiver
         from user_match um
                  join `match` m on m.id = um.match_id
-        where archived = #{archived}
+        where `status` = #{status}
           and match_id = #{matchId}
     </select>
     <select id="getUserMatchExtendedByUserIdAndMatchId" parameterType="map" resultType="userMatchExtendedDto">
@@ -57,15 +57,15 @@
     </select>
     <select id="getExtendedUserMatchList" parameterType="boolean" resultType="userMatchExtendedDto">
         <include refid="selectExtended"/>
-        where archived = #{archived}
+        where `status` = #{status}
     </select>
     <select id="getExtendedUserMatchListByUserId" parameterType="map" resultType="userMatchExtendedDto">
         <include refid="selectExtended"/>
-        where user_id = #{userId} and archived = #{archived}
+        where user_id = #{userId} and `status` = #{status}
     </select>
     <select id="getExtendedUserMatchListByMatchId" parameterType="map" resultType="userMatchExtendedDto">
         <include refid="selectExtended"/>
-        where match_id = #{matchId} and archived = #{archived}
+        where match_id = #{matchId} and `status` = #{status}
     </select>
     <select id="getExtendedUserMatchByRound" parameterType="int" resultType="userMatchExtendedDto">
         <include refid="selectExtended"/>

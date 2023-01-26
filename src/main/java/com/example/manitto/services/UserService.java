@@ -51,25 +51,17 @@ public class UserService {
         if (!BCrypt.checkpw(authDto.getPassword(), find.getPassword()))
             throw new RuntimeException(); // TODO: 2023/01/24 Incorrect Password 핸들링
         loginSessionManager.setLoginUserInfo(find.toInfoDto());
-        System.out.println(userRepository.getAllUserList().stream().map(User::toInfoDto).toList());
     }
 
     public String getUserRole(long id) {
         User user = userRepository.getUserById(id).get();
-        if (user.getAwareRole()) return user.getRole();
-        AtomicReference<String> role = new AtomicReference<>(Constants.ROLE_NONE);
-        userMatchRepository.getUserMatchByUserId(false, user.getId())
-                .stream().findFirst().ifPresentOrElse(userMatch -> {
-                    if (userMatch.getIsContributor()) role.set(Constants.ROLE_CONTRIBUTOR);
-                    if (userMatch.getIsReceiver()) role.set(Constants.ROLE_RECEIVER);
-                }, () -> {
-                });
-        userRepository.updateUser(user.generateUpdateDto(User.UpdateDto.builder(user)
-                .role(role.get())
-                .awareRole(true)
-                .build()));
-        User updated = userRepository.getUserById(id).get();
-        loginSessionManager.updateLoginUserInfo(updated.toInfoDto());
-        return role.get();
+        if (!user.getAwareRole()) {
+            userRepository.updateUser(user.generateUpdateDto(User.UpdateDto.builder(user)
+                    .awareRole(true)
+                    .build()));
+            User updated = userRepository.getUserById(id).get();
+            loginSessionManager.updateLoginUserInfo(updated.toInfoDto());
+        }
+        return user.getRole();
     }
 }
