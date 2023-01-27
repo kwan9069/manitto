@@ -42,7 +42,7 @@ create table user_match
 create table action
 (
     id             int primary key auto_increment,
-    type           int           not null,
+    type           varchar(100)  not null,
     match_id       int           not null,
     task           text          not null,
     recommendation int default 0 not null,

@@ -19,6 +19,5 @@ public class MatchService {
     
     public List<Match> getMatchListActive(){
     		return matchRepository.getMatchListActive();
-    	
-    };
+    }
 }

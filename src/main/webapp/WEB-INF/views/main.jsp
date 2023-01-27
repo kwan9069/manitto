@@ -9,42 +9,55 @@
 </head>
 <body>
 <jsp:include page="frame/header.jsp"/>
-<div class="layout bg-bottom bg-no-repeat align-middle flex justify-center"
-     style="">
-    <div class="bg-yellow-200 h-30 max-w-2xl ">
-        <c:set var="info" value="${ sessionScope.info }"/>
-        <div>
+<c:set var="info" value="${ sessionScope.info }"/>
+
+<c:if test="${ info.role eq 'none' }">
+    <c:set var="url" value="https://cdn.jjalbot.com/2021/12/vtF-fpufN/vtF-fpufN.gif"/>
+    <c:set var="col" value="col-span-2"/>
+</c:if>
+<c:if test="${ info.role eq 'receiver' }">
+    <c:set var="url" value="https://i.pinimg.com/originals/11/bc/3d/11bc3dd3e0f0e369e9b4613ece97fba8.gif"/>
+    <c:set var="col" value=""/>
+</c:if>
+<c:if test="${ info.role eq 'contributor' }">
+    <c:set var="url" value="http://4.bp.blogspot.com/-q9D35N0a6Cw/WxqMdNRU4WI/AAAAAAAACp0/Rh6i18z5COcoICFHlGi8h1z7A-E0DHDNQCLcBGAs/s1600/f6ec15dbf1f55fc0fddc8e4626512d33_1528440473_4686.gif"/>
+    <c:set var="col" value=""/>
+</c:if>
+<div class="body-layout"
+     style="background-image:url('${ url }')">
+    <div class="w-1/2 grid grid-cols-2">
+        <div class="col-span-2 text-4xl mt-12" style="font-family: 'NanumMyeongjoBold';">
             <c:if test="${ info.role eq 'none' }">
-                당신은 오늘 마니또가 아니에요
+                당신은 오늘 마니또가 아니에요 🥹
             </c:if>
             <c:if test="${ info.role eq 'receiver' }">
                 당신의 마니또가 있어요 😊 오늘의 당신만의 천사를 찾아보세요 !!
             </c:if>
             <c:if test="${ info.role eq 'contributor' }">
-                당신의 마니또가 있어요 😊 오늘은 당신이 <span id="receiver"></span>님의 천사💕!!
+                당신의 마니또가 있어요 😊 오늘은 당신이 '<span id="receiver"></span>' 님의 천사💕!!
             </c:if>
+
         </div>
-        <div id="interact-area">
+        <c:if test="${ info.role eq 'none' }">
+            <div class="col-span-2 h-12"></div>
+        </c:if>
+        <div id="info" class="col-span-2 text-3xl py-16" style="font-family: 'NanumNeuRisNeuRisCe';">나의 별명 : ${ info.randomName }</div>
+        <div class="m-2 opacity-75  ${ col }">
+            <button id="match-list-btn" class="normal-btn block">오늘의 매치리스트 보기</button>
+            <div id="match-list" class="overflow-y-auto h-64"></div>
+        </div>
+        <div id="interact-area" class="opacity-75 m-2 h-72">
             <c:if test="${ info.role eq 'receiver' }">
-                <button id="name-list-btn" class="btn">나의 마니또는 누구?</button>
-                <div id="name-list">
-
-                </div>
+                <button id="name-list-btn" class="normal-btn">나의 마니또는 누구?</button>
+                <div id="name-list" class="overflow-y-auto h-64"></div>
+            </c:if>
+            <c:if test="${ info.role eq 'contributor' }">
+                <button id="mission-list-btn" class="normal-btn">나의 미션 리스트</button>
+                <div id="mission-list" class="overflow-y-auto h-64"></div>
             </c:if>
         </div>
-        <div>
-            <button onclick="location.href='match-list'" class="btn">오늘의 매치리스트 보기</button>
-        </div>
-
-
-        <%--    <div></div>--%>
-        <%--    당신의 역할은 ${ sessionScope.info.role }입니다.</span><br>--%>
-        <%--    역할에 따라서 <br>--%>
-        <%--    - none 일때 : 다음 매치를 기대하세요 ! ^^, <br>--%>
-        <%--    - reciver 일떄 : 당신의 마니또는 randomename 입니다 누군지 찾아볼까요? (정답 맞히기 페이지 버튼 ajax 유저리스트 가져오기)<br>--%>
-        <%--    - contributor : 당신은 ## 의 천사입니다. 미션을 수행하여 보상을 받으세요(Mission 같이)<br>--%>
-        <%--    <button class="btn" onclick="location.href='match-list'">매치 리스트 가기</button>--%>
-        <%--    <button class="btn" onclick="">마니또 맞히기(유저리스트 보기)  버튼</button>--%>
+        <div class="col-span-2"></div>
+        <div class="col-span-2"></div>
     </div>
 </div>
 <jsp:include page="frame/footer.jsp"/>

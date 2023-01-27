@@ -7,10 +7,8 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by jonghyeon on 2023/01/25,
@@ -20,5 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/api/match")
 @RequiredArgsConstructor
 public class MatchApiController {
-    
+    private final MatchService matchService;
+
+    @GetMapping("/list")
+    public List<Match.InfoDto> getMatchListActive() {
+        return matchService.getMatchListActive().stream().map(Match::toInfoDto).toList();
+    }
 }

@@ -12,13 +12,13 @@ import lombok.Setter;
 @Getter
 public class Action {
     private final Long id;
+    private final String type;
     private final Long matchId;
     private final String task;
     private final Integer recommendation;
-    private final String type;
     private static Action instance;
 
-    public Action(Long id, Long matchId, String task, Integer recommendation, String type) {
+    public Action(Long id, String type, Long matchId, String task, Integer recommendation) {
         this.id = id;
         this.matchId = matchId;
         this.task = task;

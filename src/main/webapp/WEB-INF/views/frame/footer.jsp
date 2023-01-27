@@ -1,4 +1,4 @@
-<div class="gradient-lane">
-    <div class="items-center">This is Footer Area</div>
+<div class="footer">
+    <div class="items-center"></div>
 </div>
 

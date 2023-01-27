@@ -2,14 +2,11 @@ package com.example.manitto.controllers.rest;
 
 import com.example.manitto.dtos.Comment;
 import com.example.manitto.services.CommentService;
-import com.example.manitto.services.UserMatchService;
-
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.HttpRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by jonghyeon on 2023/01/25,
@@ -25,5 +22,10 @@ public class CommentApiController {
     @PostMapping("/create")
     public void createComment(Comment.CreateDto createDto, HttpRequest request)  {
     		commentService.createComment(createDto);
+    }
+
+    @GetMapping("/{matchId}")
+    public List<Comment.InfoDto> getCommentListByMatchId(@PathVariable long matchId){
+        return commentService.getCommentLisBtMatchId(matchId);
     }
 }
