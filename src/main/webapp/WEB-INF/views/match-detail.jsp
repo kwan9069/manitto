@@ -15,7 +15,7 @@
                 .done((data) => {
                     let list = $("#commentlist")
                     data.forEach(comment => {
-                        list.append(`<div id="${"${comment.writer}"}" class="overflow-x-scroll p-2 m-2 bg-pink-100 block hover hover:bg-pink-200 cursor-pointer">${"${comment.content}"}"</div>`)
+                        list.append(`<div id="${"${comment.id}"}" class="overflow-x-scroll p-2 m-2 bg-pink-100 block hover hover:bg-pink-200 cursor-pointer">${"${comment.writer}"} : ${"${comment.content}"}</div>`)
                     })
                 })
         })
@@ -50,7 +50,7 @@
         </div>
         <div class="col-span-2 text-4xl" style="font-family: 'NanumNeuRisNeuRisCe';">
             <c:if test="${ role eq 'none' }">
-                당신은 오늘 마니또가 아니에요 🥹<br>
+                당신은 오늘 마니또가 아니에요 🤣<br>
                 그래도 댓글로 익명의 상대와 소통해봐요 !
             </c:if>
             <c:if test="${ role eq 'receiver' }">
@@ -62,20 +62,21 @@
                 오늘은 당신이 '${ receiverInfo.name }' 님의 천사💕!!
             </c:if>
         </div>
-        <div class="col-span-2">
+        <div class="col-span-2 -h-40">
             <form id="comment-form">
                 <input type="hidden" id="userId" name="userId" value="${sessionScope.info.id }">
                 <input type="hidden" id="matchId" name="matchId" value="${receiverInfo.matchId }">
                 <input type="hidden" id="writer" name="writer" value="${sessionScope.info.randomName }">
                 <input class="form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                        rows="2" cols="50" id="content" name="content" placeholder="코멘트... 무플방지!!">
-                <button id="comment-btn" class="normal-btn">등록</button>
+                <button id="comment-btn" class="normal-btn mt-4">등록</button>
 
             </form>
         </div>
-        <div id="commentlist" class="m-2 opacity-75">
-
-        </div>
+        leave comment . . . 💕
+        <div id="commentlist" class="overflow-y-auto h-72 col-span-2 opacity-75 bg-gray-100 hover hover:shadow-lg"></div>
+        <div class="col-span-2"></div>
+        <div class="col-span-2"></div>
     </div>
 </div>
 <jsp:include page="frame/footer.jsp"/>

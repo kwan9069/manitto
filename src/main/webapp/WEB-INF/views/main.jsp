@@ -26,15 +26,15 @@
 <div class="body-layout"
      style="background-image:url('${ url }')">
     <div class="w-1/2 grid grid-cols-2">
-        <div class="col-span-2 text-4xl mt-12" style="font-family: 'NanumMyeongjoBold';">
+        <div class="col-span-2 text-3xl mt-12" style="font-family: 'NanumMyeongjoBold';">
             <c:if test="${ info.role eq 'none' }">
-                당신은 오늘 마니또가 아니에요 🥹
+                당신은 오늘 마니또가 아니에요🤣
             </c:if>
             <c:if test="${ info.role eq 'receiver' }">
-                당신의 마니또가 있어요 😊 오늘의 당신만의 천사를 찾아보세요 !!
+                당신의 마니또가 있어요 😊 <br>오늘의 당신만의 천사를 찾아보세요 !!
             </c:if>
             <c:if test="${ info.role eq 'contributor' }">
-                당신의 마니또가 있어요 😊 오늘은 당신이 '<span id="receiver"></span>' 님의 천사💕!!
+                당신의 마니또가 있어요 😊 <br>오늘은 당신이 '<span id="receiver"></span>' 님의 천사💕!!
             </c:if>
 
         </div>

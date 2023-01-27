@@ -45,7 +45,6 @@ public class UserPageController {
             User.InfoDto info = loginSessionManager.getLoginUserInfo();
             if (info == null) return loginPage();
             if (info.getIsAdmin()) return "admin";
-            if (!info.getAwareRole()) return "role-check";
             return "main";
         } catch (RuntimeException e) {
             return "index";
