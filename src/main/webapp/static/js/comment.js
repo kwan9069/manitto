@@ -4,7 +4,7 @@ $(() => {
         $.ajax({
             url: "/api/comment/create",
             method: "POST",
-            data: $("commnet-form").serialize(),
+            data: $("#comment-form").serialize(),
             dataType: "text",
             contentType: 'application/x-www-form-urlencoded'
         })
