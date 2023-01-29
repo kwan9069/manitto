@@ -17,17 +17,17 @@ public class Comment {
     private final Long userId;
     private final Long matchId;
     private final String content;
-    private final String randomName;
+    private final String writer;
     private final Timestamp writtenYmd;
     private final Boolean edited;
     private static Comment instance;
 
-    public Comment(Long id, Long userId, Long matchId, String content, String randomName, Timestamp writtenYmd, Boolean edited) {
+    public Comment(Long id, Long userId, Long matchId, String content, String writer, Timestamp writtenYmd, Boolean edited) {
         this.id = id;
         this.userId = userId;
         this.matchId = matchId;
         this.content = content;
-        this.randomName = randomName;
+        this.writer = writer;
         this.writtenYmd = writtenYmd;
         this.edited = edited;
         instance = this;
@@ -36,7 +36,7 @@ public class Comment {
 
     public InfoDto toInfoDto() {
         instance = this;
-        return new InfoDto(id, userId, matchId, content, randomName, writtenYmd, edited);
+        return new InfoDto(id, userId, matchId, content, writer, writtenYmd, edited);
     }
 
     public UpdateDto generateUpdateDto(UpdateDto to) {
@@ -109,7 +109,7 @@ public class Comment {
         private final Long userId;
         private final Long matchId;
         private final String content;
-        private final String randomName;
+        private final String writer;
         private final Timestamp writtenYmd;
         private final Boolean edited;
     }

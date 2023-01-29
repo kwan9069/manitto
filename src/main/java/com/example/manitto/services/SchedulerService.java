@@ -67,6 +67,7 @@ public class SchedulerService {
         AtomicInteger index = new AtomicInteger();
         matchRepository.getMatchListWaiting().forEach(match -> {
             matchRepository.updateMatch(Match.UpdateDto.builder(match)
+                    .result(null)
                     .status(Constants.STATUS_ACTIVE)
                     .build());
             for (int i = 0; i < Constants.ACTIVE_MATCH_COUNT; i++) {
@@ -92,6 +93,7 @@ public class SchedulerService {
         List<String> nicknameLists = (List<String>) nicknameApiService.call("json", totalUserCount).execute().body().get("words");
         IntStream.range(0, totalUserCount).forEach(i -> userRepository.updateUser(User.UpdateDto.builder(userList.get(i))
                 .randomName(nicknameLists.get(i))
+//                .awareRole(false)
                 .build()));
     }
 }

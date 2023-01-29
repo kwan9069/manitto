@@ -17,24 +17,24 @@ import java.util.List;
 @RequiredArgsConstructor
 
 public class UserApiController {
-    private final UserService service;
+    private final UserService userService;
 
     private final LoginSessionManager loginSessionManager;
 
     @PostMapping
     public void registerUser(User.RegisterDto registerDto) {
-        service.registerUser(registerDto);
+        userService.registerUser(registerDto);
     }
 
     @PostMapping("/login")
     public void login(User.AuthDto authDto) {
-        service.login(authDto);
+        userService.login(authDto);
     }
 
     @PutMapping("/role")
     public String getUserRole() {
         User.InfoDto info = loginSessionManager.getLoginUserInfo();
-        return service.getUserRole(info.getId());
+        return userService.getUserRole(info.getId());
     }
     @GetMapping("/logout")
     public void logout(){
@@ -43,6 +43,16 @@ public class UserApiController {
 
     @GetMapping("/list")
     public List<User.InfoDto> getUserList(){
-        return service.getUserList();
+        return userService.getUserList();
+    }
+
+    @GetMapping("/receiver")
+    public User.InfoDto getReceiver(){
+        return userService.getReceiver();
+    }
+
+    @PutMapping("/contributor/{checkId}")
+    public User.InfoDto getContributor(@PathVariable long checkId){
+        return userService.getContributor(checkId);
     }
 }

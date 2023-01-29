@@ -14,6 +14,19 @@
         <div id="match-list">
             MatchApiController(UserApiController) 의 @GetMapping mathList() 에 매핑되어 매치 리스트를 가져오고 그 정보를 화면에 그기
         </div>
+        <div>
+        
+        <button class="btn" onclick="location.href='match-detail'"> ${match1} 번째 마니또 </button>
+        <button class="btn" onclick="location.href='match-detail'"> ${match2} 번째 마니또 </button>
+        
+        </div>
+        
+        
+        <div>
+        
+        
+      
+        </div>
     </div>
 </div>
 <jsp:include page="frame/footer.jsp"/>
