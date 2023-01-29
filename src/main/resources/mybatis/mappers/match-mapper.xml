@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.manitto.repositories.MatchRepository">
+    <insert id="createMatch" parameterType="matchCreateDto">
+        insert into `match` (title, round, status)
+        values (#{title}, #{round}, #{status})
+    </insert>
+    <update id="updateMatch" parameterType="matchUpdateDto">
+        update `match`
+        set result   = #{result},
+            `status` = #{status}
+        where id = #{id}
+    </update>
+    <delete id="deleteMatch" parameterType="long">
+        delete
+        from `match`
+        where id = #{id};
+    </delete>
+    <select id="getMatchById" parameterType="long" resultType="matchDto">
+        select *
+        from `match`
+        where id = #{id}
+    </select>
+    <select id="getMatchByRound" parameterType="int" resultType="matchDto">
+        select *
+        from `match`
+        where round = #{round}
+    </select>
+    <select id="getAllMatchList" resultType="matchDto">
+        select *
+        from `match`;
+    </select>
+    <select id="getMatchListActive" resultType="matchDto">
+        select *
+        from `match`
+        where `status` = 'active';
+    </select>
+    <select id="getMatchListArchived" resultType="matchDto">
+        select *
+        from `match`
+        where `status` = 'archived';
+    </select>
+    <select id="getMatchListWaiting" resultType="matchDto">
+        select *
+        from `match`
+        where `status` = 'waiting';
+    </select>
+    <select id="getMatchByTitle" parameterType="string" resultType="matchDto">
+        select *
+        from `match`
+        where title = #{title};
+    </select>
+</mapper>
